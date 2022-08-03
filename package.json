@@ -12,7 +12,10 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hooks-global-state": "^2.0.0-rc.0",
+    "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
+    "react-select": "^5.4.0",
+    "reactstrap": "^9.1.2",
     "web-vitals": "^2.1.4",
     "yup": "^0.32.11"
   },
@@ -41,6 +44,6 @@
     ]
   },
   "devDependencies": {
-    "sass": "^1.54.0"
+    "sass": "^1.54.1"
   }
 }

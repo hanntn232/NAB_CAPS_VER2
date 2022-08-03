@@ -1,0 +1,170 @@
+.footer-wrapper{
+    background-color: black;
+    color: white;
+    box-sizing: border-box;
+    
+
+    .cover{
+        margin: 0rem 4rem;
+        padding: 1.5rem 0rem;
+        background-color: black;
+
+        .footer-top{
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            background-color: black;
+
+            .column-top-section{
+                display: flex;
+                justify-content: space-around;
+                width: 40%;
+                background-color: black;
+
+                .column1{
+                    font-weight: 800;
+                    background-color: black;
+
+                    .column1-content{
+                        margin-top: 1rem;
+                        background-color: black;                        
+                        font-size: 0.8rem;
+                        font-weight: 900;
+                    }
+                    .column1-content:hover{
+                        color: white;
+                        cursor: pointer;
+                    }
+                }
+                .column2{
+                    background-color: black;
+
+                    .column2-title{
+                        margin-top: 1rem;
+                        font-weight: 700;
+                        background-color: black;
+                        font-size: 0.8rem;
+                        cursor: default;
+                    }
+                    .column2-content{
+                        font-size: 0.8rem;
+                        color: rgb(126,126,126);
+                        margin-top: 1rem;
+                        background-color: black;
+                        font-size: 0.7rem;
+                    }
+                    .column2-content:hover{
+                        color: white;
+                        cursor: pointer;
+                    }
+                }
+                .column3{
+                    background-color: black;
+
+                    .column3-title{
+                        margin-top: 1rem;
+                        font-weight: 700;
+                        background-color: black;
+                        font-size: 0.8rem;
+                        cursor: default;
+                    }
+                    .column3-content{
+                        font-size: 0.8rem;
+                        color: rgb(126,126,126);
+                        margin-top: 1rem;
+                        background-color: black;
+                        font-size: 0.7rem;
+                    }
+                    .column3-content:hover{
+                        color: white;
+                        cursor: pointer;
+                    }
+                }
+            }
+            .icon-section{
+                display: flex;
+                background-color: black;
+                
+                .icon{
+                    background-color: black;
+
+                    svg{
+                        background-color: rgba(255, 255, 255, 0.338);
+                        margin: 0rem 0.5rem;
+                        padding: 0.3rem;
+                        box-sizing: content-box;
+                        border-radius: 50%;                        
+                        
+                        path{
+                            color: white;
+                        }
+                    }
+                    svg:hover{
+                        color: white;
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+        .footer-bottom{
+            margin-top: 3rem;
+            display: flex;
+            justify-content: space-between;
+            background-color: black;
+
+            .bottom-left{
+                display: flex;
+                background-color: black;
+                align-items: center;
+
+                .location{
+                    display: flex;
+                    margin-right: 1.5rem;
+                    background-color: black;
+                    align-items: center;
+
+                    svg{
+                        margin-right: 0.5rem;
+                        background-color: black;
+                        color: white;
+                    }
+                    .location-content{
+                        font-size: 0.6rem;
+                        background-color: black;
+                        font-size: 0.6rem;
+                    }
+                }
+                .tag{
+                    font-size: 0.8rem;
+                    color: rgb(126,126,126);
+                    background-color: black;
+                    font-size: 0.7rem;
+                }
+            }
+            .bottom-right{
+                display: flex;
+                justify-content: space-around;
+                color: #aaa;
+                font-size: 0.7rem;
+                background-color: black;
+                width: 28%;
+
+                .right-content{
+                    background-color: black;
+                    font-size: 0.7rem;
+                }
+                .right-content:hover{
+                    color: white;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
