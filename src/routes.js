@@ -9,7 +9,7 @@ export default function AppRoutes() {
     <div>
       <BrowserRouter>
         <nav>
-          <Link to="/owner">owner</Link>
+          <Link to="/owner ">owner</Link>
           <span>{"   |    "}</span>
           <Link to="/bao-an">bao an</Link>
         </nav>
