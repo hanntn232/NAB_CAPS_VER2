@@ -180,7 +180,7 @@ export default function CheckoutInfoForm({
                 <div className="button-order">
                   <button
                     onClick={handleCheckout}
-                    class="btn btn-dark btn-lg d-1"
+                    className="btn btn-dark btn-lg d-1"
                     type="submit"
                   >
                     ĐẶT HÀNG

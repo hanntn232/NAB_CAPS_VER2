@@ -13,6 +13,7 @@ section {
         z-index: 2;
         overflow: scroll;
         font-family: 'League Spartan', sans-serif;
+        font-size: 14px;
     }
 
     .inputForm {
@@ -35,8 +36,8 @@ section {
     .inputForm input {
         width: 98%;
         margin: 5px 0 10px 0;
-        height: 1.4rem;
-        line-height: 1.3rem;
+        height: 1.6rem;
+        line-height: 1.5rem;
         padding: 0.3rem 5px;
         border: 1px solid var(--primary);
         border-radius: 5px;

@@ -7,6 +7,7 @@ import { useMutationRemoveProduct } from "../../data/mutations/remove-product";
 import { useQueryGetProducts } from '../../data/queries/get-products';
 import { InputCustomerID } from "../main-page/inputCustomerID/inputCustomerID";
 import { ProductInputForm } from "./InputForm";
+import Footer from '../checkout/footer'
 
 const defaultData = [
     {
@@ -214,5 +215,6 @@ export const Owner = (props) => {
                 ))}
             </div>
         </div>
+        <Footer></Footer>
     </div>
 }
