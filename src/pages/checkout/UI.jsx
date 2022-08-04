@@ -1,7 +1,6 @@
 import { client, ListCartItems } from "./list-cart-items";
 import { ApolloProvider } from "@apollo/client";
 import CustomerInforForm from "./customer-infor-form";
-import GetFee from "./fee";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import SuccessMessage from "./success-page";
 import { useState } from "react";

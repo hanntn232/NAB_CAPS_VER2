@@ -4,7 +4,7 @@ import { useState } from "react";
 
 export default function CartItem({ item, updateCart, handleChooseItem }) {
   if (item.quantity === 0) return null;
-  console.log("cArtItem,item",item);
+  
   return (
     <tr>
       <th scope="row" className="form-check">

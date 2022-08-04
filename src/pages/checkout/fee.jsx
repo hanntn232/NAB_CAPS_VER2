@@ -1,17 +1,11 @@
-import { gql, useQuery } from '@apollo/client';
+import { useQuery } from '@apollo/client';
 import React from 'react';
 import './style-customer-info.css';
 
-const GET_FEE = gql`
-    query($location: String!) {
-        fee(location: $location) {
-        shipping
-        tax
-        }
-    }
-`
+//import query
+import { GET_FEE } from '../../data/queries/checkout-queries/get-fee';
+
 export default function GetFee({location, subTotal}) {
-    console.log(subTotal)
     const {loading, error, data} = useQuery(GET_FEE, {
         variables: {
             "location": location

@@ -1,50 +1,23 @@
 import React, { useCallback, useEffect } from "react";
-import { useQuery, gql, useLazyQuery, useMutation } from "@apollo/client";
+import { useLazyQuery, useMutation } from "@apollo/client";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 import { useState } from "react";
 import CartItem from "./cart-item";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./style-list-cart-items.css";
 import logo from "../imgsrc/Logo_NIKE.svg.png";
 import Modal from "./modalCheckout";
-import Footer from './footer'
+
+// import queries 
+import { GET_LIST_CART_ITEMS } from '../../data/queries/checkout-queries/get-list-cart-items';   
+import { GET_PRODUCT_INFOR } from '../../data/queries/checkout-queries/get-product-infor';
+// import mutation
+import { UPDATE_CART } from '../../data/mutations/checkout-mutations/update-cart';   
 
 export const client = new ApolloClient({
   uri: "http://localhost:4000/graphql",
   cache: new InMemoryCache(),
 });
-
-const GET_LIST_CART_ITEMS = gql`
-  query GetListCartItems($customerId: ID!) {
-    customer(customerId: $customerId) {
-      items {
-        productId
-        quantity
-        color
-      }
-    }
-  }
-`;
-
-const GET_PRODUCT_INFOR = gql`
-  query GetProductInfor($productId: ID!) {
-    product(id: $productId) {
-      id
-      name
-      price
-      pictures
-      stock
-    }
-  }
-`;
-
-const UPDATE_CART = gql`
-  mutation UpdateCart($customer: CustomerInput!) {
-    updateCustomer(customer: $customer) {
-      id
-    }
-  }
-`;
 
 export function ListCartItems({ setProductsToCheckout }) {
   const [productsInCart, setProductsInCart] = useState([]);
@@ -289,7 +262,7 @@ export function ListCartItems({ setProductsToCheckout }) {
             <h2 className="cart-title">GIỎ HÀNG</h2>
           </div>
           <div className="list-cart-header-right">
-            <Link to="/" className="btn-order-content">
+            <div className="btn-order-content">
               <button
                 className="btn btn-dark btn-m inverted-8 openModalBtn"
                 onClick={() => {
@@ -307,7 +280,7 @@ export function ListCartItems({ setProductsToCheckout }) {
                   }}
                 />
               )}
-            </Link>
+            </div>
           </div>
         </div>
 

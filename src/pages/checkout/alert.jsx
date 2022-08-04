@@ -1,4 +1,5 @@
-import './style-alert.css'
+import './style-alert.css';
+
 export default function AlertMessage({isOpen}){
     if(!isOpen) return null;
     return <div className="alert-page">

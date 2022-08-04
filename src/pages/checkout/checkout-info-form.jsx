@@ -24,7 +24,6 @@ export default function CheckoutInfoForm({
   getLocation,
   updateInfo,
 }) {
-  console.log("customerInfo", customerInfo);
   const [emptyCart, emptyCartResult] = useMutation(GET_PRODUCT_INFOR);
 
   const navigate = useNavigate();
@@ -83,12 +82,8 @@ export default function CheckoutInfoForm({
           {({
             values,
             errors,
-            touched,
             handleChange,
-            handleBlur,
             handleSubmit,
-            isSubmitting,
-            /* and other goodies */
           }) => (
             <form onSubmit={handleSubmit}>
 
