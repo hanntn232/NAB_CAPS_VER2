@@ -6,7 +6,7 @@ import GetFee from "./fee";
 import "./style-customer-info.css";
 import TableProductInCart from "./table_products_in_cart";
 import { gql, useMutation } from "@apollo/client";
-
+import { useGlobalState } from '../main-page/customerIdState/customerIdState';
 
 const GET_PRODUCT_INFOR = gql`
   mutation Mutation($customerId: ID!) {
@@ -25,13 +25,13 @@ export default function CheckoutInfoForm({
   updateInfo,
 }) {
   const [emptyCart, emptyCartResult] = useMutation(GET_PRODUCT_INFOR);
-
+  const [customerId, setCustomerId] = useGlobalState('customerID');
   const navigate = useNavigate();
 
   const handleCheckout = () => {
     emptyCart({
       variables: {
-        customerId: "nvp",
+        customerId: customerId,
       },
     }).then(() => {
       navigate("../thanhcong");

@@ -11,8 +11,6 @@ export default function Modal({
 
   const navigate = useNavigate();
 
-  console.log("modal redner");
-
   return (
     <div className="modal-cover">
       <div className="modalBackgrounnd">

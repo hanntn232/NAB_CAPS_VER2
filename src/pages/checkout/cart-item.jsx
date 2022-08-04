@@ -1,6 +1,5 @@
 import "./style-list-cart-items.css";
 import imgsample from "../imgsrc/1.jpg";
-import { useState } from "react";
 
 export default function CartItem({ item, updateCart, handleChooseItem }) {
   if (item.quantity === 0) return null;
@@ -19,7 +18,7 @@ export default function CartItem({ item, updateCart, handleChooseItem }) {
         />
       </th>
       <th scope="row" className="table-products">
-        <img src={imgsample} alt="" className="img-thumbnail cart-item-img" />
+        <img src={imgsample} alt="image" className="img-thumbnail cart-item-img" />
       </th>
       <th scope="row" className="table-products">{item.name}</th>
       <th scope="row" className="table-products">{item.categories || "Undefined"}</th>

@@ -8,6 +8,7 @@ import "./style-list-cart-items.css";
 import "./style-phone-list-cart-items.css";
 import logo from "../imgsrc/Logo_NIKE.svg.png";
 import Modal from "./modalCheckout";
+import { useGlobalState } from '../main-page/customerIdState/customerIdState';
 
 // import queries 
 import { GET_LIST_CART_ITEMS } from '../../data/queries/checkout-queries/get-list-cart-items';   
@@ -22,9 +23,8 @@ export const client = new ApolloClient({
 
 export function ListCartItems({ setProductsToCheckout }) {
   const [productsInCart, setProductsInCart] = useState([]);
-
   const [originalCartStatus, setOriginalCartStatus] = useState();
-
+  const [customerId, setCustomerId] = useGlobalState('customerID');
   const [GetCartItems, CartItemsResult] = useLazyQuery(GET_LIST_CART_ITEMS);
   const [GetItemInfo, ItemInfoResult] = useLazyQuery(GET_PRODUCT_INFOR);
   const [HandleUpdateCart, CartAfterUpdate] = useMutation(UPDATE_CART);
@@ -42,8 +42,6 @@ export function ListCartItems({ setProductsToCheckout }) {
   };
 
   const handleUpdateCartToServer = async (id, newQuantity) => {
-    console.log("update Cart", newQuantity);
-
     const newCartItems = productsInCart.map((product) => {
       if (product.id === id) {
         if (newQuantity > 0) {
@@ -68,13 +66,12 @@ export function ListCartItems({ setProductsToCheckout }) {
       };
     });
 
-    console.log(newCartItems);
 
     const res = HandleUpdateCart({
       variables: {
         customer: {
           items: newCartItems,
-          customerId: "nvp",
+          customerId: customerId,
         },
       },
     }).then(() => {
@@ -86,15 +83,13 @@ export function ListCartItems({ setProductsToCheckout }) {
   const HandleGetCartItems = async () => {
     const CartItemsData = await GetCartItems({
       variables: {
-        customerId: "nvp",
+        customerId: customerId ,
       },
       fetchPolicy: "no-cache",
     });
     const CartItems = CartItemsData.data.customer.items.map((item) => {
       return { id: item.productId, quantity: item.quantity, color: item.color };
     });
-
-    console.log(CartItems);
 
     let ProductDetails = [];
     for (let item of CartItems) {
@@ -115,7 +110,6 @@ export function ListCartItems({ setProductsToCheckout }) {
 
     // find name of cart item
 
-    console.log("productgsdetials", ProductDetails);
     const products = CartItems.map((cartItem) => {
       const productDetail = ProductDetails.find(
         (e) => e.product?.id === cartItem.id
@@ -142,7 +136,6 @@ export function ListCartItems({ setProductsToCheckout }) {
     setProductsInCart(finalRes);
     setOriginalCartStatus(finalRes);
 
-    console.log(finalRes);
   };
 
   useEffect(() => {
@@ -173,7 +166,6 @@ export function ListCartItems({ setProductsToCheckout }) {
       }
     });
 
-    console.log(countIsChecked, countProducts);
     if (countIsChecked === countProducts) handleSelectAll(true);
     else setSelectAll(false);
 
@@ -259,7 +251,7 @@ export function ListCartItems({ setProductsToCheckout }) {
       <div className="cart-wrapper">
         <div className="list-cart-header">
           <div className="list-cart-header-left">
-            <img src={logo} alt="" className="logo" />
+            <img src={logo} alt="logo" className="logo" />
             <h2 className="cart-title">GIỎ HÀNG</h2>
           </div>
           <div className="list-cart-header-right">
