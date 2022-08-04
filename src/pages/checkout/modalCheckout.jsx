@@ -1,11 +1,18 @@
 import React from "react";
 import "./style-modal-checkout.css";
+import {useNavigate} from "react-router-dom"
 
 export default function Modal({
   setOpenModal,
   updateCartToServer,
   removeChange,
-}) {
+}) 
+{
+
+  const navigate = useNavigate();
+
+  console.log("modal redner");
+
   return (
     <div className="modal-cover">
       <div className="modalBackgrounnd">
@@ -38,6 +45,7 @@ export default function Modal({
             <button
               onClick={() => {
                 removeChange();
+                navigate("/");
                 setOpenModal(false);
               }}
               id="cancelBtn"
@@ -48,6 +56,7 @@ export default function Modal({
               id="saveBtn"
               onClick={() => {
                 updateCartToServer();
+                navigate("/");
                 setOpenModal(false);
               }}
             >
