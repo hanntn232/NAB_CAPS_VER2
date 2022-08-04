@@ -86,6 +86,9 @@ export const ProductInputForm = (props) => {
             if (values.stock && values.stock.toString().trim() !== '' && ((!isNaN(values.stock) && parseInt(formik.values.stock) < 0) || isNaN(values.stock))) {
                 errors.stock = 'Must be a positive number'
             }
+            if(values.stock && !Number.isInteger(Number(values.stock))){
+                errors.stock = 'Must be an integer number'
+            }
 
             //validate product colors
             if (values.colors) {
@@ -213,7 +216,7 @@ export const ProductInputForm = (props) => {
                     else if (parseInt(inputYearTo) === parseInt(inputYearFrom) && parseInt(inputMonthTo) < parseInt(inputMonthFrom)) {
                         errors.featuringTo = 'Featuring To must be greater than Featuring From'
                     }
-                    else if (parseInt(inputYearTo) === parseInt(inputYearFrom) && parseInt(inputMonthTo) === parseInt(inputMonthFrom) && parseInt(inputDayTo) < parseInt(inputDayFrom)) {
+                    else if (parseInt(inputYearTo) === parseInt(inputYearFrom) && parseInt(inputMonthTo) === parseInt(inputMonthFrom) && parseInt(inputDayTo) <= parseInt(inputDayFrom)) {
                         errors.featuringTo = 'Featuring To must be greater than Featuring From'
                     }
                 }
@@ -495,7 +498,7 @@ export const ProductInputForm = (props) => {
                 name="stock"
                 value={formik.values.stock}
                 // onChange={formik.handleChange}
-                onChange={() => console.log()}
+                onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 placeholder="Enter product stock"
                 spellCheck={false}
