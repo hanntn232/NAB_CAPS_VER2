@@ -197,7 +197,7 @@ export function ListCartItems({ setProductsToCheckout }) {
   function handleCheckBeforeClick() {
     handleUpdateCartToServer();
 
-    if (!subToTal) return alert("Please choose items before next step!");
+    if (!subToTal) return alert("Vui lòng chọn sản phẩm bạn muốn trước khi chuyển đến bước tiếp theo!");
     else {
       setProductsToCheckout(productsInCart);
       navigate("../thanhtoan");

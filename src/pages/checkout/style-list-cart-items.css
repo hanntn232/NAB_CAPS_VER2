@@ -1,6 +1,6 @@
 :root{
     --primaryfont: "League Spartan";
-    --font-size: 18px;
+    --font-size: 16px;
     --table-color: #ccc;
 }
 .list-cart-items-wrapper{
@@ -9,7 +9,6 @@
     box-sizing: border-box;
     font-family: var(--primaryfont);
     font-size: var(--font-size);
-    font-weight: 500;
     letter-spacing: 1px;
 }
 
@@ -33,7 +32,7 @@ button {
 }
 
 .item-quantity-content {
-    border: 1px solid var(--table-color);
+    border: 0px solid var(--table-color);
     width: 2rem;
     text-align: center;
 }
@@ -159,4 +158,8 @@ button {
 }
 .BA-style-table{
     width: 75%;
+}
+
+.table-products{
+    font-weight: lighter;
 }

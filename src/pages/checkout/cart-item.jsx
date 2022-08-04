@@ -18,13 +18,13 @@ export default function CartItem({ item, updateCart, handleChooseItem }) {
           }}
         />
       </th>
-      <th scope="row">
+      <th scope="row" className="table-products">
         <img src={imgsample} alt="" className="img-thumbnail cart-item-img" />
       </th>
-      <th scope="row">{item.name}</th>
-      <th scope="row">{item.categories || "Undefined"}</th>
-      <th scope="row">{item.price}</th>
-      <th scope="row">
+      <th scope="row" className="table-products">{item.name}</th>
+      <th scope="row" className="table-products">{item.categories || "Undefined"}</th>
+      <th scope="row" className="table-products">{item.price}</th>
+      <th scope="row" className="table-products">
         <button
           className="item-quantity-edit"
           onClick={() => {
@@ -51,7 +51,7 @@ export default function CartItem({ item, updateCart, handleChooseItem }) {
           +
         </button>
       </th>
-      <th scope="row">{item.price * item.quantity} VND</th>
+      <th scope="row" className="table-products">{item.price * item.quantity} VND</th>
     </tr>
   );
 }
