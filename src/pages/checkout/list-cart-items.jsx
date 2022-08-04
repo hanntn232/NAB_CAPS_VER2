@@ -5,6 +5,7 @@ import { useState } from "react";
 import CartItem from "./cart-item";
 import { Link, useNavigate } from "react-router-dom";
 import "./style-list-cart-items.css";
+import "./style-phone-list-cart-items.css";
 import logo from "../imgsrc/Logo_NIKE.svg.png";
 import Modal from "./modalCheckout";
 
