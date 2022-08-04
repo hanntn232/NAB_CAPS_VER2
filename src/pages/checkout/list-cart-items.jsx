@@ -219,7 +219,7 @@ export function ListCartItems({ setProductsToCheckout }) {
   const [modalOpen, setModalOpen] = useState(false);
 
   return (
-    <div>
+    <div className="list-cart-items-wrapper">
       {/* navbar section  */}
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
         <a className="navbar-brand" href="#">

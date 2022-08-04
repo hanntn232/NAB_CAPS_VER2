@@ -4,7 +4,7 @@ import './success-page.css';
 
 export default function SuccessMessage(){
     return(
-        <div className='wrapper'>
+        <div className='success-wrapper'>
             <img src={successImg} alt="success" className='success-img'/>
             <div className='text'>
                 <div className='title'>ĐẶT HÀNG THÀNH CÔNG</div>
