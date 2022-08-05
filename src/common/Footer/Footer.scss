@@ -1,0 +1,217 @@
+.footer {
+    padding: 6vh 4vw 0;
+    color: white;
+    background-color: var(--primary-color);
+
+    .top {
+        display: flex;
+        justify-content: space-between;
+        border-bottom: 1px solid #7e7e7e;
+        padding-bottom: 1.8vh;
+
+        .left {
+            display: flex;
+            width: 60%;
+            justify-content: space-between;
+
+            .primary-section {
+                li {
+                    margin-bottom: 2.2vh;
+                    font-weight: 600;
+                    cursor: pointer;
+                    user-select: none;
+                }
+            }
+
+            .secondary-section {
+                li {
+                    font-size: 1.4rem;
+                    font-weight: 300;
+                    margin-bottom: 1.8vh;
+                    color: #7e7e7e;
+                    cursor: pointer;
+                    user-select: none;
+
+                    &:hover {
+                        color: white;
+                    }
+                }
+
+                .title {
+                    font-weight: 600;
+                    font-size: 1.6rem;
+                    color: white;
+                }
+            }
+
+            .payment {
+                user-select: none;
+                cursor: pointer;
+
+                .title {
+                    font-weight: 600;
+                    margin-bottom: 2.2vh;
+                }
+    
+                .logos {
+                    width: 12vw;
+                    display: flex;
+                    flex-wrap: wrap;
+                    align-items: center;
+    
+                    .logo {
+                        display: flex;
+                        justify-content: center;
+                        margin: 0 1vw 1.5vh 0;
+    
+                        img {
+                            max-width: 3vw;
+                        }
+                    }
+                }
+            }
+
+        }
+
+        .right {
+            width: 40%;
+            display: flex;
+            justify-content: flex-end;
+
+            .social {
+                width: 32px;
+                height: 32px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 50px;
+                margin-left: 0.8vw;
+                color: var(--primary-color);
+                background-color: #7e7e7e;
+                cursor: pointer;
+
+                svg {
+                    font-size: 1.8rem;
+                    margin-top: 1px;
+                }
+            }
+        }
+    }
+
+    .bottom {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 2vh 0 2vh;
+        user-select: none;
+
+        .location {
+            display: flex;
+            align-items: center;
+
+            svg {
+                font-size: 1.4rem;
+                margin-right: 4px;
+            }
+    
+            div {
+                line-height: 1.6rem;
+                margin-top: 2px;
+                margin-right: 2vw;
+            }
+        }
+
+        .sm-text {
+            font-size: 1.2rem;
+            color: #7e7e7e;
+            margin-top: 3px;
+        }
+    }
+}
+
+
+// Tablet & mobile
+@media (max-width: 63.9375em) {
+    .footer {
+        .top {
+            flex-direction: column;
+
+            .left {
+                width: 100%;
+            }
+
+            .right {
+                width: 100%;
+                justify-content: center;
+                padding-top: 2vh;
+
+                .social:first-child {
+                    margin-left: 0;
+                }
+            }
+        }
+    }
+}
+
+// Tablet
+@media (min-width: 46.25em) and (max-width: 63.9375em) {
+    .footer {
+        .top {
+            .left {
+                .primary-section {
+                    li {
+                        font-size: 1.4rem;
+                        margin-bottom: 2vh;
+                    }
+                }
+
+                .secondary-section {
+                    flex-direction: row;
+
+                    li {
+                        font-size: 1.2rem;
+                    }
+                }
+            }
+        }
+    }
+}
+
+// Mobile
+@media (max-width: 46.1875em) {
+    .footer {
+        .top {
+            .left {
+                flex-direction: column;
+
+                ul {
+                    margin-bottom: 3vh;
+                }
+
+                .payment {
+                    .logos {
+                        width: 90vw;
+
+                        .logo {
+                            margin: 0 3vw 2vh 0;
+
+                            img {
+                                max-width: 12vw;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .right {
+                .social {
+                    margin-left: 2vw;
+                }
+            }
+        }
+
+        .bottom {
+            flex-direction: column;
+        }
+    }
+}
