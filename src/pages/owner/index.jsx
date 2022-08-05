@@ -168,57 +168,60 @@ export const Owner = (props) => {
             })
         }
     }, [data])
-    return <div>
+    return <div style={{ position: 'relative' }}>
         <Header></Header>
-        <div id="owner-flow" className="owner-flow" style={{ width: '100vw', position: 'relative', marginTop:'50px' }}>
-        <StoreContext.Provider value={store}>
-            <ProductInputForm className="owner-input-form" isShow={isShow}></ProductInputForm>
-        </StoreContext.Provider>
-        <div className="owner-container">
-            <div className="header">
-                <div className="table-name">PRODUCT LIST</div>
-                <button className="btn" onClick={() => {setIsShow(true)}}>Add product</button>
-            </div>
-            <div className="main">
-                <div className="owner-title">
-                    <div className="title-name">Name</div>
-                    <div className="title-price">Price</div>
-                    <div className="title-color">Color</div>
-                    <div className="title-size">Size</div>
-                    <div className="title-edit">Edit</div>
-                    <div className="title-delete">Delete</div>
-                </div>
-                {data?.products.map((value) => (
-                    <div className="owner-item" key={value.id}>
-                        <div className="item-name">{value.name}</div>
-                        <div className="item-price">{value.price}</div>
-                        <div className="item-color">{
-                            value.colors.map((value2, index) => {
-                                if (index !== value.colors.length - 1) {
-                                    return value2.name + ', '
-                                }
-                                else
-                                    return value2.name
-                            })
-                        }</div>
-                        <div className="item-size">{value.sizes.map((value2, index) => {
-                            if (index !== value.sizes.length - 1) {
-                                return value2 + ', '
-                            }
-                            else
-                                return value2
-                        })}</div>
-                        <div className="item-edit" onClick={() => openEdit(value)}>
-                            <div className="bi bi-pencil"></div>
-                        </div>
-                        <div className="item-delete">
-                            <div className="bi bi-trash" onClick={() => removeProduct(value.id)}></div>
-                        </div>
+        <div style={{ position: 'absolute', top: '100px' }}>
+            <div id="owner-flow" className="owner-flow" style={{ width: '100vw', position: 'relative' }}>
+                <StoreContext.Provider value={store}>
+                    <ProductInputForm className="owner-input-form" isShow={isShow}></ProductInputForm>
+                </StoreContext.Provider>
+                <div className="owner-container">
+                    <div className="header">
+                        <div className="table-name">PRODUCT LIST</div>
+                        <button className="btn" onClick={() => { setIsShow(true) }}>Add product</button>
                     </div>
-                ))}
+                    <div className="main">
+                        <div className="owner-title">
+                            <div className="title-name">Name</div>
+                            <div className="title-price">Price</div>
+                            <div className="title-color">Color</div>
+                            <div className="title-size">Size</div>
+                            <div className="title-edit">Edit</div>
+                            <div className="title-delete">Delete</div>
+                        </div>
+                        {data?.products.map((value) => (
+                            <div className="owner-item" key={value.id}>
+                                <div className="item-name">{value.name}</div>
+                                <div className="item-price">{value.price}</div>
+                                <div className="item-color">{
+                                    value.colors.map((value2, index) => {
+                                        if (index !== value.colors.length - 1) {
+                                            return value2.name + ', '
+                                        }
+                                        else
+                                            return value2.name
+                                    })
+                                }</div>
+                                <div className="item-size">{value.sizes.map((value2, index) => {
+                                    if (index !== value.sizes.length - 1) {
+                                        return value2 + ', '
+                                    }
+                                    else
+                                        return value2
+                                })}</div>
+                                <div className="item-edit" onClick={() => openEdit(value)}>
+                                    <div className="bi bi-pencil"></div>
+                                </div>
+                                <div className="item-delete">
+                                    <div className="bi bi-trash" onClick={() => removeProduct(value.id)}></div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+                <Footer></Footer>
+
             </div>
         </div>
-        <Footer></Footer>
     </div>
-    </div> 
 }
