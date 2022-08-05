@@ -4,10 +4,10 @@ import { Link } from "react-router-dom";
 import { useMutation, useLazyQuery } from "@apollo/client";
 import { useCallback, useEffect, useState } from "react";
 import CheckoutInfoForm from "./checkout-info-form";
+import { useGlobalState } from '../main-page/customerIdState/customerIdState';
 
 //import queries
 import { GET_CUSTOMER } from '../../data/queries/checkout-queries/get-customer';
-// import { GET_PRODUCT_INFOR } from '../../queries/checkout-queries/get-product-infor';
 //import mutation
 import { UPDATE_CUSTOMER } from '../../data/mutations/checkout-mutations/update-customer';
 import { UPDATE_PRODUCT } from '../../data/mutations/checkout-mutations/update-product';
@@ -17,11 +17,12 @@ const CustomerInforForm = ({ checkoutItems }) => {
   const [updateStock, resultUpdateStock] = useMutation(UPDATE_PRODUCT);
   const [GetCartItems, resultGetCustomer] = useLazyQuery(GET_CUSTOMER);
   const [customerInfo, setCustomerInfo] = useState({});
+  const [customerId, setCustomerId] = useGlobalState('customerID');
 
   const fetchCustomerInfo = async () => {
     const customer = await GetCartItems({
       variables: {
-        customerId: "nvp",
+        customerId: customerId,
       },
       fetchPolicy: "no-cache",
     });
@@ -65,7 +66,7 @@ const CustomerInforForm = ({ checkoutItems }) => {
       updateCustomerInfo({
         variables: {
           customer: {
-            customerId: "nvp",
+            customerId: customerId,
             name: values.name,
             location: values.address,
             items: new_cart

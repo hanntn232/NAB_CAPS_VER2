@@ -8958,10 +8958,15 @@
   dependencies:
     "punycode" "^2.1.0"
 
-"use-sync-external-store@1.1.0":
-  "integrity" "sha512-SEnieB2FPKEVne66NpXPd1Np4R1lTNKfjuy3XdIoPQKYBAFdzbzSZlSn1KJZUiihQLQC5Znot4SBz1EOTBwQAQ=="
-  "resolved" "https://registry.npmjs.org/use-sync-external-store/-/use-sync-external-store-1.1.0.tgz"
-  "version" "1.1.0"
+use-global-hook@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/use-global-hook/-/use-global-hook-0.3.0.tgz#bea26e1afe9fc12ef34c04c1646412f7ee65896e"
+  integrity sha512-uzQmqPuBUEZV4oJOpnhnwLEVkGOfc471k6uul1SgNM43HWS3ZjL8tb1QKa2VjoGPNk40nvnl8kndZnIyiVNvtA==
+
+use-sync-external-store@1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/use-sync-external-store/-/use-sync-external-store-1.1.0.tgz#3343c3fe7f7e404db70f8c687adf5c1652d34e82"
+  integrity sha512-SEnieB2FPKEVne66NpXPd1Np4R1lTNKfjuy3XdIoPQKYBAFdzbzSZlSn1KJZUiihQLQC5Znot4SBz1EOTBwQAQ==
 
 "util-deprecate@^1.0.1", "util-deprecate@^1.0.2", "util-deprecate@~1.0.1":
   "integrity" "sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw=="

@@ -1,7 +1,6 @@
 import React from "react";
 
 export default function TableProductInCart({ productsInCart }) {
-    console.log("products incarts",productsInCart);
   return (
     <div>
       <h3 className="form-order-title">ĐƠN HÀNG CỦA BẠN</h3>
