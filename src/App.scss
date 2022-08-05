@@ -1,0 +1,56 @@
+:root {
+  --primary-color: #111;
+  --text-color: #1a1a1a;
+
+  --navbar-height: 10vh;
+  --marquee-height: 4vh;
+}
+
+
+.app {
+  overflow: hidden;
+}
+
+
+// Animation
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-1.2vw);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+  }
+  to {
+      opacity: 1;
+  }
+}
+
+
+// Tablet & mobile
+@media (max-width: 63.9375em) {
+  :root {
+    --marquee-height: 2.5vh;
+  }
+}
+
+// Tablet
+@media (min-width: 46.25em) and (max-width: 63.9375em) {
+  :root {
+    --navbar-height: 70px;
+  }
+}
+
+// Mobile
+@media (max-width: 46.1875em) {
+  :root {
+    --navbar-height: 8vh;
+  }
+}
