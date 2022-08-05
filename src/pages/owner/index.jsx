@@ -7,7 +7,8 @@ import { useMutationRemoveProduct } from "../../data/mutations/remove-product";
 import { useQueryGetProducts } from '../../data/queries/get-products';
 import { InputCustomerID } from "../main-page/inputCustomerID/inputCustomerID";
 import { ProductInputForm } from "./InputForm";
-import Footer from '../checkout/footer'
+import Footer from '../../common/Footer/Footer'
+import Header from '../../common/Header/Header'
 
 const defaultData = [
     {
@@ -167,7 +168,9 @@ export const Owner = (props) => {
             })
         }
     }, [data])
-    return <div id="owner-flow" className="owner-flow" style={{ width: '100vw', position: 'relative', marginTop:'50px' }}>
+    return <div>
+        <Header></Header>
+        <div id="owner-flow" className="owner-flow" style={{ width: '100vw', position: 'relative', marginTop:'50px' }}>
         <StoreContext.Provider value={store}>
             <ProductInputForm className="owner-input-form" isShow={isShow}></ProductInputForm>
         </StoreContext.Provider>
@@ -217,4 +220,5 @@ export const Owner = (props) => {
         </div>
         <Footer></Footer>
     </div>
+    </div> 
 }
