@@ -55,7 +55,10 @@
         height: 50px;
         line-height: 50px;
     }
-
+    .item-edit div.bi.bi-pencil,
+    .item-delete div.bi.bi-trash{
+        line-height: 50px;
+    }
     .item-edit:hover,
     .item-delete:hover {
         cursor: pointer;
