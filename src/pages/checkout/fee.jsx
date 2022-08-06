@@ -1,6 +1,7 @@
 import { useQuery } from '@apollo/client';
 import React from 'react';
 import './style-customer-info.css';
+import './style-phone-customer-info.css';
 
 //import query
 import { GET_FEE } from '../../data/queries/checkout-queries/get-fee';
@@ -15,7 +16,7 @@ export default function GetFee({location, subTotal}) {
     if(error) return <p>Tax and Shipping fee are calculating...</p>;
 
     return (<div className="table total">
-        <div className='shipping'>
+        <div className='shipping phone-shipping'>
             <div className='shipping-title'>Tạm tính <sup>đ</sup></div>
             <div className='shipping-content'>{subTotal}</div>
         </div>

@@ -71,12 +71,12 @@
 }
 .button-order{
     display: flex;
-    align-items: center;
     justify-content: right;
 }
 .button-order button{
     display: flex;
     padding: 0.7rem 2.5rem;
+    margin: auto;
 }
 .error{
     color: red;
