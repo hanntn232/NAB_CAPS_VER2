@@ -47,7 +47,7 @@ export default function CheckoutInfoForm({
     <div>
       <div>
         <Formik
-          initialValues={{ name: name, email: "novapo@gmail.com" }}
+          initialValues={{ name: name, email: "default@gmail.com" }}
           validate={(values) => {
             const errors = {};
 
@@ -77,6 +77,13 @@ export default function CheckoutInfoForm({
           }}
           onSubmit={(values, { setSubmitting }) => {
             updateInfo(values);
+            emptyCart({
+              variables: {
+                customerId: customerId,
+              },
+            }).then(() => {
+              navigate("../thanhcong");
+            });
           }}
         >
           {({
@@ -176,11 +183,11 @@ export default function CheckoutInfoForm({
               <TableProductInCart productsInCart={checkoutItems} />
               <GetFee location={getLocation} subTotal={subTotal} />
 
-              <div to="/thanhcong" className="btn-order-content">
+              <div className="btn-order-content">
                 <div className="button-order">
                   <button
-                    onClick={handleCheckout}
-                    class="btn btn-dark btn-lg"
+                    // onClick={handleCheckout}
+                    class= "btn btn-dark btn-lg"
                     type="submit"
                   >
                     ĐẶT HÀNG

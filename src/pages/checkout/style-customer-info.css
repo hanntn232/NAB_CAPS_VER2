@@ -79,6 +79,9 @@
     padding: 0.7rem 2.5rem;
     margin: auto;
 }
+.btn-order-banned{
+    cursor: progress !important;
+}
 .error{
     color: red;
     font-style: italic;
