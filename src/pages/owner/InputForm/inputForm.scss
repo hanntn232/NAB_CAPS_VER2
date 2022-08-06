@@ -40,7 +40,11 @@ section {
         padding: 0.3rem 5px;
         border: 1px solid var(--primary);
         border-radius: 5px;
+        font-size: 1.3rem;
         font-family: 'League Spartan', sans-serif;
+    }
+    .inputForm textarea{
+        font-size: 1.2rem;
     }
 
     h2 {
@@ -99,6 +103,7 @@ section {
         line-height: 25px;
         text-align: center;
         margin: 20px 10px;
+        font-size: 1.5rem;
     }
 
     .btn.cancel {
