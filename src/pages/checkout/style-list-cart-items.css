@@ -25,6 +25,8 @@ button {
     border: 1px solid var(--table-color);
     width: 1.5rem;
     text-align: center;
+    border-radius: 4px;
+    font-weight: bold;
 } 
 .item-quantity-edit:focus{
     border: 1px solid var(--table-color);
@@ -41,7 +43,7 @@ button {
     height: 50px;
 }
 .item-quantity-edit{
-    font-weight: bold;
+    /* font-weight: bold; */
 }
 .item-quantity-edit:hover{
     background-color: rgb(233, 232, 232);
@@ -52,7 +54,7 @@ button {
     left: 50%;
     margin-top: 2rem;
     width: fit-content;
-    font-weight: 700;
+    /* font-weight: 700; */
 }
 .cart-total-block{
     position: relative;
@@ -69,7 +71,7 @@ button {
 }
 .cart-total-text{
     font-size: 1.2rem;
-    font-weight: bold;
+    /* font-weight: bold; */
     padding: 0.5rem 1rem;
 }
 .cart-total-content{
@@ -83,6 +85,7 @@ button {
     width: 95%;
     background-color: rgb(0, 0, 0);
     color: #fff;
+    border-radius: 20px;
 }
 .btn-order-content{
     height: 100%;
@@ -91,7 +94,7 @@ button {
     margin-bottom: 4rem;
 }
 .btn-order-content:hover{
-    font-weight: bold;
+    /* font-weight: bold; */
     text-decoration: none;
 }
 .openModalBtn{
@@ -107,7 +110,7 @@ button {
 .inverted-8 {
     margin-bottom: 2rem;
     text-align: center;
-    font-weight: 600;
+    /* font-weight: 600; */
     letter-spacing: 1px;
     color: #000;
     background:
@@ -125,7 +128,7 @@ button {
 }
 .thead-light.header th {
     color: #282828;
-    font-weight: 900;
+    font-weight: 500;
 }
 #flexCheckChecked{
     height: 1rem;
@@ -148,7 +151,7 @@ button {
 .cart-title{
     text-align: center;
     margin: 1rem 0rem;
-    font-weight: 900;
+    /* font-weight: 900; */
     letter-spacing: 5px;
     border-left: 1px solid #ccc;
     padding-left: 1rem;
@@ -162,4 +165,7 @@ button {
 
 .table-products{
     font-weight: lighter;
+}
+.item-order-infor{
+    border-bottom: 1px solid #ccc;
 }

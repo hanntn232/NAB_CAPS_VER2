@@ -109,7 +109,6 @@ export function ListCartItems({ setProductsToCheckout }) {
     }
 
     // find name of cart item
-
     const products = CartItems.map((cartItem) => {
       const productDetail = ProductDetails.find(
         (e) => e.product?.id === cartItem.id
@@ -279,7 +278,7 @@ export function ListCartItems({ setProductsToCheckout }) {
 
         <table className="table container BA-style-table">
           <thead className="thead-light header">
-            <tr>
+            <tr className="BA-style-row-list-cart-item">
               <th scope="col" colSpan="2">
                 <input
                   type="checkbox"
@@ -294,7 +293,7 @@ export function ListCartItems({ setProductsToCheckout }) {
               <th scope="col cart-item-content" style={{ width: 400 }}>
                 Sản phẩm
               </th>
-              <th scope="col" style={{ width: 150 }}>
+              <th scope="col cart-item-category" style={{ width: 150 }}>
                 Phân loại
               </th>
               <th scope="col">Giá</th>
@@ -320,14 +319,14 @@ export function ListCartItems({ setProductsToCheckout }) {
         <div className="cart-total-block">
           <div className="cart-total-wrapper">
             <div className="cart-total-text">Tổng cộng</div>
-            <div className="cart-total-content">{subToTal} VND</div>
+            <div className="cart-total-content">{subToTal} <sup>đ</sup></div>
           </div>
           <div className="btn-order-content">
             <button
               className={`${
                 subToTal === 0
-                  ? "btn btn-dark btn-m btn-block disabled"
-                  : "btn btn-dark btn-m btn-block inverted-8"
+                  ? "btn btn-dark btn-m btn-block disabled order-btn"
+                  : "btn btn-dark btn-m btn-block inverted-8 order-btn"
               }`}
               onClick={handleCheckBeforeClick}
             >

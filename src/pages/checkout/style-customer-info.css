@@ -67,6 +67,7 @@
 .total-price-content{
     font-size: 28px;
     color: rgb(255, 98, 0);
+    font-weight: 600;
 }
 .button-order{
     display: flex;
@@ -91,7 +92,7 @@
 }
 
 .d-1 {
-    --c: #424242; /* the color */
+    --c: #232323; /* the color */
     --b: .1em;    /* border length*/
     --d: 1px;    /* the cube depth */
     --h: 1.2em;   /* the height */

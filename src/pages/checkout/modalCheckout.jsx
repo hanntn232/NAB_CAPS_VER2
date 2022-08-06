@@ -13,8 +13,8 @@ export default function Modal({
 
   return (
     <div className="modal-cover">
-      <div className="modalBackgrounnd">
-        <div className="modalContainer">
+      <div className="modalBackground">
+        <div className="modalContainer modalContainerPhone">
           <div className="titleCloseBtn">
             <button
               onClick={() => {
@@ -47,6 +47,7 @@ export default function Modal({
                 setOpenModal(false);
               }}
               id="cancelBtn"
+              className="buttonPhone"
             >
               Hủy tất cả
             </button>
@@ -57,6 +58,7 @@ export default function Modal({
                 navigate("/");
                 setOpenModal(false);
               }}
+              className="buttonPhone"
             >
               Lưu thay đổi
             </button>
