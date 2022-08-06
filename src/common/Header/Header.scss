@@ -1,0 +1,428 @@
+.app-header {
+    position: fixed;
+    z-index: 99;
+
+    .navbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 2vh 4vw;
+        height: var(--navbar-height);
+        width: 100vw;
+        background-color: var(--primary-color);
+    
+        .left-side {
+            display: flex;
+            align-items: center;
+    
+            .nav-link {
+                display: block;
+                font-size: 2.1rem;
+                margin-left: 3vw;
+                color: white;
+    
+                &:hover {
+                    color: darkorange;
+                    cursor: pointer;
+                }
+
+                &:first-child {
+                    margin-left: 0;
+                }
+            }
+    
+            .active {
+                position: relative;
+                font-weight: 600;
+    
+                &:hover {
+                    color: white;
+                }
+    
+                &::after {
+                    content: "";
+                    position: absolute;
+                    top: 2.5vh;
+                    left: 0;
+                    width: 1.6vw;
+                    height: 0.5vh;
+                    background-color: darkorange;
+                }
+            }
+        }
+
+        .logo {
+            background-image: url(../../assets/img/nike-logo.png);
+            width: 150px;
+            height: 80px;
+            background-size: cover;
+        }
+    
+        .right-side {
+            display: flex;
+            align-items: center;
+
+            .mobile-search-btn {
+                display: none;
+            }
+    
+            .searchbar {
+                display: flex;
+                align-items: center;
+                background-color: white;
+                padding: 1.2vh 1vw;
+                border-radius: 20px;
+                margin-right: 1vw;
+                position: relative;
+    
+                &:hover {
+                    background-color: #f5f5f5;
+                    cursor: text;
+    
+                    .erase-icon {
+                        display: block;
+                    }
+                }
+    
+                .icon {
+                    font-size: 2rem;
+                    margin-right: 12px;
+                    cursor: default;
+                }
+    
+                .search-input {
+                    font-size: 1.6rem;
+                    background-color: transparent;
+                    outline: none;
+                    border: none;
+                }
+    
+                .erase-icon {
+                    font-size: 2rem;
+                    margin-left: 0.6vw;
+                    cursor: pointer;
+                    display: none;
+                }
+            }
+    
+            .cart {
+                position: relative;
+                // margin-right: 2.5vw;
+                color: white;
+    
+                .cart-icon {
+                    font-size: 3rem;
+                    padding: 0 8px;
+                    border-radius: 50%;
+                    height: 40px;
+                    width: 40px;
+                    cursor: pointer;
+                    margin-top: 5px;
+                    
+                    &:hover {
+                        color: var(--text-color);
+                        background-color: #f5f5f5;
+                    }
+                }
+    
+                .badge {
+                    position: absolute;
+                    top: 10px;
+                    right: -1px;
+                    padding: 3px 5px 1px 4.5px;
+                    color: var(--text-color);
+                    background-color: rgb(255, 140, 0);
+                    font-size: 1.2rem;
+                    line-height: 1.2rem;
+                    border-radius: 20px;
+                    font-weight: 600;
+                    user-select: none;
+                    cursor: pointer;
+                }
+            }
+
+            .nav-mobile-btn {
+                display: none;
+                margin: 0 2vw;
+            }
+    
+            .nav-overlay {
+                position: fixed;
+                right: 0;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                background-color: rgba($color: gray, $alpha: 0.3);
+                animation: fadeIn linear 0.2s;
+                z-index: 2;
+                display: none;
+            }
+    
+            .nav-checkbox-input {
+                display: none;
+    
+                &:checked ~ .nav-overlay {
+                    display: block;
+                }
+    
+                &:checked ~ .nav-mobile-wrapper {
+                    transform: translateX(0%);
+                }
+            }
+    
+            .nav-mobile-wrapper {
+                position: fixed;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                height: 100%;
+                width: 70vw;
+                max-width: 100%;
+                padding: 2vh 4vw 2vh 6vw;
+                background-color: var(--primary-color);
+                transform: translateX(100%);
+                transition: transform linear 0.1s; 
+                z-index: 3;
+    
+                .close {
+                    position: absolute;
+                    right: 4vw;
+
+                    svg {
+                        font-size: 3.5rem;
+                        color: white;
+                    }
+                }
+    
+                .nav-mobile {
+                    display: flex;
+                    margin-top: 8vh;
+                    flex-direction: column;
+    
+                    .nav-link {
+                        font-size: 2.8rem;
+                        font-weight: 300;
+                        margin-bottom: 4vh;
+                        color: white;
+                    }
+            
+                    .active {
+                        position: relative;
+                        font-weight: 600;
+            
+                        &::after {
+                            content: "";
+                            position: absolute;
+                            top: 3vh;
+                            left: 0;
+                            width: 7vw;
+                            height: 0.5vh;
+                            background-color: darkorange;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .marquee-wrapper {
+        width: 100%;
+        height: 4vh;
+        display: flex;
+        justify-content: center;
+        background-color: #f7f7f7;
+        box-shadow: rgb(229, 229, 229) 0px -1px 0px 0px inset;
+
+        marquee {
+            font-size: 1.6rem;
+            line-height: 4vh;
+            height: 4vh;
+            margin-top: 0.3vh;
+            width: 45%;
+        }
+    }
+}
+
+// Tablet & mobile
+@media (max-width: 63.9375em) {
+    .app-header {
+        .navbar {
+            height: var(--navbar-height);
+
+            .right-side {
+                .searchbar {
+                    padding: 0.8vh 1.4vw;
+                }
+
+                .cart {
+                    .badge {
+                        padding: 2.5px 4px 0 4px;
+                        font-size: 1rem;
+                        line-height: 1rem;
+                    }
+                }
+            }
+        }
+    }
+}
+
+// Tablet
+@media (min-width: 46.25em) and (max-width: 63.9375em) {
+    .app-header {
+        .navbar {
+            padding: 1vh 3vw;
+
+            .logo {
+                width: 100px;
+                height: 50px;
+            }
+
+            .left-side {
+                .nav-link {
+                    font-size: 1.9rem;
+                    margin-left: 2.5vw;
+                }
+
+                .active {
+                    &::after {
+                        top: 1.8vh;
+                        width: 2.5vw;
+                        height: 0.3vh;
+                    }
+                }
+            }
+
+            .right-side {
+                .searchbar {
+                    width: 32vw;
+
+                    .search-input {
+                        font-size: 1.4rem;
+                        width: 23vw;
+                    }
+                }
+
+                .cart {
+                    .badge {
+                        top: 14px;
+                        right: 4px;
+                    }
+                }
+            }
+        }
+
+        .marquee-wrapper {
+            height: 2.5vh;
+            margin-top: -1px;
+
+            marquee {
+                font-size: 1.4rem;
+                line-height: 2.5vh;
+                height: 2.5vh;
+                margin-top: 0.2vh;
+            }
+        }
+    }
+}
+
+// Mobile
+@media (max-width: 46.1875em) {
+    .app-header {
+        .navbar {
+            position: relative;
+            height: var(--navbar-height);
+            z-index: 10;
+
+            .left-side {
+                display: none;
+            }
+
+            .logo {
+                width: 90px;
+                height: 45px;
+                margin-left: -2vw;
+            }
+
+            .right-side {
+                .mobile-search-btn {
+                    display: flex;
+                    margin-right: 1vw;
+
+                    svg {
+                        font-size: 2.3rem;
+                        color: white;
+                    }
+                }
+
+                .nav-search-checkbox-input {
+                    &:checked ~ .searchbar {
+                        display: flex;
+                    }
+                }
+
+                .searchbar {
+                    padding: 8px 10px;
+                    position: fixed;
+                    left: 0;
+                    right: 0;
+                    top: var(--navbar-height);
+                    margin: 0;
+                    border-radius: 0px;
+                    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+                    animation: mobileSearchSideIn linear 0.3s;
+                    z-index: 3;
+                    display: none;
+
+                    .icon {
+                        margin-right: 2vw;
+                    }
+
+                    .search-input {
+                        font-size: 1.6rem;
+                        width: 86%;
+                        height: 3vh;
+                    }
+                }
+
+                .cart {
+                    .badge {
+                        top: 12px;
+                        right: 3px;
+                    }
+                }
+
+                .nav-mobile-btn {
+                    display: flex;
+    
+                    svg {
+                        color: white;
+                        font-size: 2.5rem;
+                    }
+                }
+            }
+        }
+
+        .marquee-wrapper {
+            height: 3vh;
+            margin-top: -1px;
+
+            marquee {
+                font-size: 1.4rem;
+                line-height: 3vh;
+                height: 3vh;
+                margin-top: 0.3vh;
+            }
+        }
+    }
+
+    @keyframes mobileSearchSideIn {
+        from {
+            opacity: 0;
+            top: calc(var(--navbar-height) - 1vh);
+        }
+        to {
+            opacity: 1;
+            top: var(--navbar-height);
+        }
+    }
+}

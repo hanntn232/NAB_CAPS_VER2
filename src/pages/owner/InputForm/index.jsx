@@ -86,6 +86,9 @@ export const ProductInputForm = (props) => {
             if (values.stock && values.stock.toString().trim() !== '' && ((!isNaN(values.stock) && parseInt(formik.values.stock) < 0) || isNaN(values.stock))) {
                 errors.stock = 'Must be a positive number'
             }
+            if (values.stock && !Number.isInteger(Number(values.stock))) {
+                errors.stock = 'Must be an integer number'
+            }
 
             //validate product colors
             if (values.colors) {
@@ -175,7 +178,7 @@ export const ProductInputForm = (props) => {
                 if (!checkFeaturedRegex.test(values.featuringFrom)) {
                     errors.featuringFrom = 'Featuring From must be in dd/mm/yyyy format';
                 }
-                else {
+                if (checkFeaturedRegex.test(values.featuringFrom)) {
                     let today = new Date();
                     let dd = today.getDate();
                     let mm = today.getMonth() + 1;
@@ -183,15 +186,18 @@ export const ProductInputForm = (props) => {
                     let inputDayFrom = values.featuringFrom.substring(0, 2);
                     let inputMonthFrom = values.featuringFrom.substring(3, 5);
                     let inputYearFrom = values.featuringFrom.substring(6, 11);
-                    if (parseInt(inputYearFrom) < parseInt(yyyy)) {
-                        errors.featuringFrom = 'Featuring From must be greater than or equal today'
+                    if (!store.edit.isEdit || (store.edit.isEdit && values.featuringFrom !== store.editInfo.dataEdit.featuringFrom)) {
+                        if (parseInt(inputYearFrom) < parseInt(yyyy)) {
+                            errors.featuringFrom = 'Featuring From must be greater than or equal today'
+                        }
+                        else if (parseInt(inputYearFrom) === parseInt(yyyy) && parseInt(inputMonthFrom) < parseInt(mm)) {
+                            errors.featuringFrom = 'Featuring From must be greater than or equal today'
+                        }
+                        else if (parseInt(inputYearFrom) === parseInt(yyyy) && parseInt(inputMonthFrom) === parseInt(mm) && parseInt(inputDayFrom) < parseInt(dd)) {
+                            errors.featuringFrom = 'Featuring From must be greater than or equal today'
+                        }
                     }
-                    else if (parseInt(inputYearFrom) === parseInt(yyyy) && parseInt(inputMonthFrom) < parseInt(mm)) {
-                        errors.featuringFrom = 'Featuring From must be greater than or equal today'
-                    }
-                    else if (parseInt(inputYearFrom) === parseInt(yyyy) && parseInt(inputMonthFrom) === parseInt(mm) && parseInt(inputDayFrom) < parseInt(dd)) {
-                        errors.featuringFrom = 'Featuring From must be greater than or equal today'
-                    }
+
                 }
             }
             //validate featured to
@@ -213,7 +219,7 @@ export const ProductInputForm = (props) => {
                     else if (parseInt(inputYearTo) === parseInt(inputYearFrom) && parseInt(inputMonthTo) < parseInt(inputMonthFrom)) {
                         errors.featuringTo = 'Featuring To must be greater than Featuring From'
                     }
-                    else if (parseInt(inputYearTo) === parseInt(inputYearFrom) && parseInt(inputMonthTo) === parseInt(inputMonthFrom) && parseInt(inputDayTo) < parseInt(inputDayFrom)) {
+                    else if (parseInt(inputYearTo) === parseInt(inputYearFrom) && parseInt(inputMonthTo) === parseInt(inputMonthFrom) && parseInt(inputDayTo) <= parseInt(inputDayFrom)) {
                         errors.featuringTo = 'Featuring To must be greater than Featuring From'
                     }
                 }
@@ -358,9 +364,9 @@ export const ProductInputForm = (props) => {
             // if (product.__typename) {
             //     delete product['__typename']
             // }
-            const convertColorObject = (colors)=>{
+            const convertColorObject = (colors) => {
                 let newArrayColors = new Array();
-                colors.map((v,i)=>{
+                colors.map((v, i) => {
                     let color = {};
                     color.name = v.name;
                     color.hexValue = v.hexValue;
@@ -376,7 +382,7 @@ export const ProductInputForm = (props) => {
                     ...(product.name && { name: product.name }),
                     ...(product.price && { price: parseInt(product.price) }),
                     ...(product.stock && { stock: parseInt(product.stock) }),
-                    ...(product.colors && { colors: convertColorObject(product.colors)}),
+                    ...(product.colors && { colors: convertColorObject(product.colors) }),
                     ...(product.description && { description: product.description }),
                     ...(product.categories && { categories: [...product.categories.split(',')] }),
                     ...(product.sizes && { sizes: [...product.sizes] }),
@@ -445,7 +451,7 @@ export const ProductInputForm = (props) => {
             className="inputForm"
             onSubmit={formik.handleSubmit}>
 
-            <h2>Add product</h2>
+            <h3 style={{fontSize:'2.5rem', marginBottom: '10px'}}>Add product</h3>
 
             {/* Product name */}
             <label
@@ -495,7 +501,7 @@ export const ProductInputForm = (props) => {
                 name="stock"
                 value={formik.values.stock}
                 // onChange={formik.handleChange}
-                onChange={() => console.log()}
+                onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 placeholder="Enter product stock"
                 spellCheck={false}
@@ -524,7 +530,7 @@ export const ProductInputForm = (props) => {
                         value={value.name}
                         onChange={(e) => { changeColor(e.target.value, index, true, false) }}
                         onBlur={formik.handleBlur}
-                        placeholder="Enter color name"
+                        placeholder="Color name"
                         style={{ marginRight: '10px' }}
                         spellCheck={false}
                         className={formik.touched.colors && formik.errors.colorsIndex?.includes(index) && formik.errors.colorsName ? 'errMsg shortInput' : 'shortInput'} />
@@ -534,7 +540,7 @@ export const ProductInputForm = (props) => {
                         value={value.hexValue}
                         onChange={(e) => changeColor(e.target.value, index, false, true)}
                         onBlur={formik.handleBlur}
-                        placeholder="Enter color hex"
+                        placeholder="Color hex"
                         spellCheck={false}
                         className={formik.touched.colors && formik.errors.colorsIndex?.includes(index) && (formik.errors.colorsHexValue || formik.errors.colorsHexValueRegex) ? 'errMsg shortInput' : 'shortInput'} />
                     <span
@@ -618,7 +624,7 @@ export const ProductInputForm = (props) => {
                             className={formik.touched.pictureUrls && formik.errors.urlPictures && formik.errors.urlPicturesIndex?.includes(index) ? 'errMsg' : null} />
                         <span
                             className="shortInput bi bi-dash-circle"
-                            style={{ marginLeft: '10px', position: 'absolute', top: '15px', right: '0px', textAlign: 'right', padding: '0px', margin: '0px' }}
+                            style={{ marginLeft: '10px', position: 'absolute', top: '9px', right: '0px', textAlign: 'right', padding: '0px', margin: '0px' }}
                             onClick={() => removeUrlPictures(index)}>
                         </span>
                     </div>

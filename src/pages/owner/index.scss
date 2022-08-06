@@ -12,6 +12,7 @@
         font-family: 'League Spartan', sans-serif;
         background-color: white;
         position: relative;
+        margin-bottom: 100px;
     }
 
     .owner-title {
@@ -54,7 +55,10 @@
         height: 50px;
         line-height: 50px;
     }
-
+    .item-edit div.bi.bi-pencil,
+    .item-delete div.bi.bi-trash{
+        line-height: 50px;
+    }
     .item-edit:hover,
     .item-delete:hover {
         cursor: pointer;
@@ -74,7 +78,7 @@
         width: 100%;
         padding: 5px 0px;
         align-items: center;
-        height: 40px;
+        height: 50px;
         font-weight: 300;
         border-bottom: 1px solid rgba(211, 211, 211,0.5);
     }
@@ -93,14 +97,14 @@
 
     .owner-container .table-name {
         font-weight: bold;
-        font-size: 1.5rem;
+        font-size: 2.5rem;
         line-height: 77px;
     }
 
     .owner-container .btn {
         font-family: 'League Spartan', sans-serif;
         font-weight: 500;
-        font-size: 1rem;
+        // font-size: 1rem;
         border: 1px solid var(--primary);
         border-radius: 5px;
         background-color: var(--primary);

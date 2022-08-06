@@ -1,16 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
-import { Owner } from './pages/owner';
-import { ProductInputForm } from './pages/owner/InputForm';
-import AppRoutes from './routes';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import './App.scss';
+// import ProductDetail from './pages/browse/components/Products/ProductDetail/ProductDetail';
+// import Products from './pages/browse/components/Products/ProductList';
+// import Home from './pages/browse/Home';
+import {Owner} from './pages/owner/index';
 
 function App() {
-  // return <Owner></Owner>
   return (
-    <div>
-      <AppRoutes />
-    </div>
-  )
+    <BrowserRouter>
+      <Routes>
+        {/* <Route path='/' element={<Home />} exact /> */}
+        <Route path='/shop'>
+          {/* <Route index element={<Products />}/>
+          <Route path=':name/:id' element={<ProductDetail />} /> */}
+        </Route>
+        <Route path='/owner' element={<Owner />} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
 export default App;

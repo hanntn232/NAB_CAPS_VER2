@@ -32,7 +32,7 @@
     letter-spacing: 1px;
     font-size: 1rem;
 }
-.bi{
+.success-wrapper .bi{
     background-color: rgb(226, 225, 225);
     color: green;
     align-self: center;
