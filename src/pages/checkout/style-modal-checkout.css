@@ -7,7 +7,7 @@
     right: 0;
     bottom: 0;
     background-color: rgba(0,0,0,0.5);
-    z-index: 2;
+    z-index: 1000;
 }
 .modalBackground {
     width: 100vw;
@@ -31,7 +31,7 @@
     position: absolute;
     left: 36%;
     top: 30%;
-    z-index: 1;
+    z-index: 10000;
     background-color: white;
 }
 
@@ -67,14 +67,14 @@
     text-align: center;
 }
 
-.modalContainer .footer {
+.modalContainer .BA-footer {
     flex: 20%;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.modalContainer .footer button {
+.modalContainer .BA-footer button {
     width: 150px;
     height: 45px;
     margin: 10px;

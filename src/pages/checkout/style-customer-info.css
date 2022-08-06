@@ -1,5 +1,6 @@
 .customer-info-wrapper{
-    margin: 3rem 8rem 3rem;
+    padding: 12rem 8rem 3rem;
+
 }
 .customer-infor-header{
     text-align: center;
@@ -86,9 +87,19 @@
     display: flex;
     justify-content: center;
 }
+.header-wrapper input{
+    height: 40px;
+    border-radius: 10px;
+}
 .nike-logo{
     width: 120px;
     height: 60px;
+}
+
+.form-control{
+    height: 40px;
+    border-radius: 10px;
+    font-size: large;
 }
 
 .d-1 {

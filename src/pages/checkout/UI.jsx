@@ -12,7 +12,9 @@ function CheckOutUI() {
 
   return (
     <div>
+      {/* header section  */}
       <HeaderMy />
+
       <ApolloProvider client={client}>
         {/* <BrowserRouter> */}
         <Routes>
@@ -30,6 +32,7 @@ function CheckOutUI() {
         </Routes>
         {/* </BrowserRouter> */}
       </ApolloProvider>
+      
       {/* footer section  */}
       <FooterMy />
       
