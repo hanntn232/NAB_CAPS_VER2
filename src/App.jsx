@@ -3,7 +3,7 @@ import "./App.scss";
 // import ProductDetail from './pages/browse/components/Products/ProductDetail/ProductDetail';
 // import Products from './pages/browse/components/Products/ProductList';
 // import Home from './pages/browse/Home';
-import { Owner } from "./pages/owner/index";
+// import { Owner } from "./pages/owner/index";
 import CheckOutUI from "./pages/checkout/UI";
 
 function App() {
@@ -15,7 +15,7 @@ function App() {
           {/* <Route index element={<Products />}/>
           <Route path=':name/:id' element={<ProductDetail />} /> */}
         </Route>
-        <Route path="/owner" element={<Owner />} />
+        {/* <Route path="/owner" element={<Owner />} /> */}
         <Route path="/checkout/*" element={<CheckOutUI />} />
       </Routes>
     </BrowserRouter>
