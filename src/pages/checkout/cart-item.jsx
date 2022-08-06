@@ -5,7 +5,7 @@ export default function CartItem({ item, updateCart, handleChooseItem }) {
   if (item.quantity === 0) return null;
   
   return (
-    <tr>
+    <tr className="item-order-infor">
       <th scope="row" className="form-check">
         <input
           type="checkbox"
@@ -17,13 +17,13 @@ export default function CartItem({ item, updateCart, handleChooseItem }) {
           }}
         />
       </th>
-      <th scope="row" className="table-products">
+      <th scope="row" className="table-products products-image">
         <img src={imgsample} alt="image" className="img-thumbnail cart-item-img" />
       </th>
       <th scope="row" className="table-products">{item.name}</th>
       <th scope="row" className="table-products">{item.categories || "Undefined"}</th>
       <th scope="row" className="table-products">{item.price}</th>
-      <th scope="row" className="table-products">
+      <th scope="row" className="table-products cart-item-btn-wrapper">
         <button
           className="item-quantity-edit"
           onClick={() => {
@@ -50,7 +50,7 @@ export default function CartItem({ item, updateCart, handleChooseItem }) {
           +
         </button>
       </th>
-      <th scope="row" className="table-products">{item.price * item.quantity} VND</th>
+      <th scope="row" className="table-products">{item.price * item.quantity}</th>
     </tr>
   );
 }
