@@ -34,12 +34,12 @@ export default function Modal({
             </button>
           </div>
           <div className="title">
-            <h2>Bạn chưa lưu những thay đổi</h2>
+            <h3>Bạn chưa lưu những thay đổi</h3>
           </div>
           <div className="body">
             <div>Bạn có muốn lưu những thay đổi trước khi tiếp tục?</div>
           </div>
-          <div className="footer">
+          <div className="BA-footer">
             <button
               onClick={() => {
                 removeChange();

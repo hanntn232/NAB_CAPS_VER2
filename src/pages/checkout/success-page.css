@@ -1,8 +1,9 @@
 .success-wrapper{
     background-color: rgb(247,247,247);
+    padding-top: 10rem;
 }
 .success-img{
-    width: 30%;
+    width: 20%;
     height: 20%;
     display: flex;
     margin: auto;
@@ -11,26 +12,27 @@
     margin: 3rem;
     text-align: center;
 }
-.title{
-    font-size: 1.8rem;
+.success-wrapper .text .title{
+    font-size: 3rem;
     font-weight: 900;
     letter-spacing: 0.2rem;
 }
-.message{
+.success-wrapper .text .message{
     font-size: 1.2rem;
-    font-weight: 900;
+    font-weight: 700;
     padding: 1rem;
     border-top: 3px solid green;
     margin: 2rem 14rem;
     background-color: rgb(226, 225, 225);
     display: flex;
+    justify-content: center;
 }
 .message-content{
     background-color: rgb(226, 225, 225);
     align-self: center;
     margin-left: 1rem;
     letter-spacing: 1px;
-    font-size: 1rem;
+    font-size: 1.5rem;
 }
 .success-wrapper .bi{
     background-color: rgb(226, 225, 225);
@@ -44,6 +46,14 @@
 .btnBackToHome:hover{
     text-decoration: none;
     color: #fff;
+}
+.success-wrapper .text button{
+    width: 20%;
+    height: 30px;
+    border-radius: 8px;
+}
+.success-wrapper .text button a{
+    font-size: 1.8rem;
 }
 .inverted-2 {
     background:
