@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
 import '../../App.css';
-import '../owner/index.scss'
+import '../owner/Owner.scss'
 import { useMutationAddProduct } from "../../data/mutations/add-product";
 import { useMutationRemoveProduct } from "../../data/mutations/remove-product";
 import { useQueryGetProducts } from '../../data/queries/get-products';

@@ -1,0 +1,225 @@
+.banner1 {
+    position: relative;
+    padding: calc(var(--navbar-height) + var(--marquee-height)) 0 0;
+    user-select: none;
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .label {
+        position: absolute;
+        bottom: 7.5vh;
+        left: 4vw;
+        width: 40vw;
+
+        h2 {
+            font-size: 8rem;
+            line-height: 7rem;
+            letter-spacing: -4px;
+            color: var(--text-color);
+            margin-bottom: 2vh;
+        }
+
+        span {
+            font-size: 2rem;
+        }
+
+        .btn {
+            display: block;
+            width: fit-content;
+            padding: 1.5vh 1.6vw 1.3vh;
+            color: white;
+            font-weight: 500;
+            font-size: 2rem;
+            border-radius: 30px;
+            margin-top: 6vh;
+            cursor: pointer;
+            background-color: var(--primary-color);
+        }
+    }
+}
+
+.banner2 {
+    display: flex;
+
+    .item {
+        flex: 1;
+        color: white;
+        background-color: black;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+
+        img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+        }
+
+        .label {
+            font-size: 4.6rem;
+            line-height: 4.6rem;
+            margin-top: 40px;
+            user-select: none;
+        }
+        
+        .label--small {
+            font-size: 2rem;
+            line-height: 2.4rem;
+            user-select: none;
+        }
+
+        .link {
+            button {
+                padding: 1.6vh 1vw 1.2vh;
+                cursor: pointer;
+                font-weight: 700;
+                margin-top: 50px;
+                border: none;
+                font-size: 1.6rem;
+                border-radius: 20px;
+                background-color: white;
+                
+                &:hover {
+                    outline: 3px solid darkorange;
+                }
+            }
+        }
+    }
+}
+
+.banner3 {
+
+}
+
+.banner4 {
+    background-image: url(../../../../assets/img/banner1.jpg);
+    width: 100%;
+    height: 40vh;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: white;
+    margin: 4vh 0;
+
+    p {
+        margin: 2vh 0;
+        font-weight: 300;
+    }
+}
+
+
+// Tablet & mobile
+@media (max-width: 63.9375em) {}
+
+// Tablet
+@media (min-width: 46.25em) and (max-width: 63.9375em) {
+    .banner1 {
+        .label {
+            bottom: 2vh;
+            left: 3.5vw;
+
+            h2 {
+                font-size: 4.5rem;
+                line-height: 4rem;
+                letter-spacing: -3px;
+                margin-bottom: -0.2vh;
+            }
+
+            span {
+                font-size: 1.2rem;
+            }
+
+            .btn {
+                padding: 0.6vh 1.5vw 0.4vh;
+                font-size: 1.4rem;
+                margin-top: 2vh;
+            }
+        }
+    }
+
+    .banner2 {
+        .item {
+            .label--small {
+                font-size: 1.6rem;
+                line-height: 2rem;
+            }
+
+            .label {
+                font-size: 3.8rem;
+                line-height: 4.5rem;
+                margin-top: 36px;
+                text-align: center;
+            }
+
+            .label:nth-child(3) {
+                font-size: 4.8rem;
+            }
+
+            .link {
+                button {
+                    padding: 1.2vh 1.5vw 0.9vh;
+                }
+            }
+        }
+    }
+
+    
+}
+
+// Mobile
+@media (max-width: 46.1875em) {
+    .banner1 {
+        padding: calc(var(--navbar-height) + var(--marquee-height) - 1px) 0 36vh;
+
+        .label {
+            bottom: 6vh;
+            left: 3vw;
+            width: 96vw;
+
+            h2 {
+                font-size: 5rem;
+                line-height: 5rem;
+                letter-spacing: -3px;
+                margin-bottom: -0.2vh;
+            }
+
+            span {
+                font-size: 1.6rem;
+            }
+
+            .btn {
+                padding: 1.2vh 3vw 0.9vh;
+                font-size: 2rem;
+                margin-top: 5vh;
+            }
+        }
+    }
+
+    .banner2 {
+        flex-direction: column;
+        padding-bottom: 4vh;
+        
+        .item {
+            &:nth-child(2) {
+                padding: 8vh 0;
+            }
+
+            .link {
+                button {
+                    padding: 1.6vh 2.5vw 1.2vh;
+
+                    &:hover {
+                        outline: none;
+                    }
+                }
+            }
+        }
+    }
+}

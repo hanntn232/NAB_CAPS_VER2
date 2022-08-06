@@ -3,7 +3,7 @@ import '../../../App.css'
 import './inputForm.scss'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
-import { StoreContext } from "..";
+import { StoreContext } from "../Owner";
 import { useMutationAddProduct } from "../../../data/mutations/add-product";
 import { useQueryGetProducts } from "../../../data/queries/get-products";
 import { useMutationUpdateProduct } from "../../../data/mutations/update-product";

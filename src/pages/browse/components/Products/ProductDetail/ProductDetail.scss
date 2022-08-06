@@ -1,0 +1,377 @@
+.product-detail {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    padding: calc(var(--navbar-height) + var(--marquee-height) + 4vh) 4vw 8vh;
+
+    .tag {
+        position: absolute;
+        top: 22vh;
+        left: 5vw;
+        font-size: 1.6vw;
+        line-height: 2vw;
+        padding: 0.5vh 1vw 0.1vh;
+        color: darkorange;
+        background-color: white;
+        border-radius: 20px;
+        box-shadow: 0 0 10px #ccc;
+        user-select: none;
+    }
+
+    .image-container {
+        display: flex;
+        flex-wrap: wrap;
+        width: 55vw;
+
+        img, video {
+            width: 26vw;
+            height: fit-content;
+            margin: 1vh 1vw 1vh 0;
+        }
+    }
+
+    .detail {
+        width: 33vw;
+        color: var(--text-color);
+
+        .name {
+            font-size: 4.5rem;
+            line-height: 4.4rem;
+            font-weight: 600;
+            margin-top: 1vh;
+        }
+
+        h4 {
+            font-size: 2.2rem;
+            font-weight: 300;
+            margin-top: 1vh;
+        }
+
+        .price {
+            padding-top: 5vh;
+            font-size: 3.3rem;
+            font-weight: 700;
+            color: darkorange;
+            text-align: end;
+            user-select: none;
+        }
+
+        .size-selection {
+            padding: 8vh 0 4vh;
+            user-select: none;
+
+            p {
+                font-weight: 300;
+                margin-bottom: 1vh;
+            }
+
+            .wrapper {
+                display: flex;
+                flex-wrap: wrap;
+
+                .size {
+                    padding: 1.9vh 0 1.2vh;
+                    border-radius: 5px;
+                    border: 1px solid #ccc;
+                    margin-right: 0.6vw;
+                    margin-top: 1.2vh;
+                    cursor: pointer;
+                    width: 4.5vw;
+                    text-align: center;
+
+                    &:hover {
+                        border-color: black;
+                    }
+
+                }
+
+                .disable {
+                    color: #ccc;
+                    background-color: transparent;
+                    cursor: default;
+
+                    &:hover {
+                        border-color: #ccc;
+                    }
+                }
+                
+                .select {
+                    border-color: black;
+                }
+            }
+        }
+
+        .color-selection {
+            padding: 2vh 0;
+
+            p {
+                font-weight: 300;
+                margin-bottom: 1vh;
+            }
+
+            .wrapper {
+                display: flex;
+                flex-wrap: wrap;
+
+                .color {
+                    width: 40px;
+                    height: 40px;
+                    border-radius: 50%;
+                    border: 3px solid white;
+                    outline: 1px solid #ccc;
+                    margin-right: 0.7vw;
+                    margin-top: 1.2vh;
+                    cursor: pointer;
+
+                    &:hover {
+                        outline-color: black;
+                    }
+                }
+
+                .disable {
+                    position: relative;
+                    cursor: default;
+
+                    &::before {
+                        content: "";
+                        position: absolute;
+                        top: -3px;
+                        left: -3px;
+                        width: 34px;
+                        height: 34px;
+                        border-radius: 50%;
+                        background-color: rgba(204, 204, 204, 0.5);
+                        border: 3px solid white;
+                        // outline: 1px solid #ccc;
+                    }
+
+                    &:hover {
+                        outline-color: #ccc;
+                    }
+                }
+
+                .select {
+                    outline-color: black;
+                }
+            }
+        }
+
+        .add {
+            width: 100%;
+            color: white;
+            font-size: 2.2rem;
+            padding: 3vh 0;
+            border-radius: 50px;
+            background-color: var(--primary-color);
+            margin: 10vh 0;
+            cursor: pointer;
+
+            &:hover {
+                color: var(--primary-color);
+                background-color: white;
+                border-color: transparent;
+                outline: 4px solid darkorange;
+                font-weight: 500;
+            }
+        }
+
+        .disable {
+            cursor: default;
+            border-color: transparent;
+            background-color: rgb(174, 174, 174);
+
+            &:hover {
+                color: white;
+                background-color: rgb(174, 174, 174);
+                outline: none;
+                font-weight: 400;
+            }
+        }
+
+        .quote {
+            line-height: 3.2rem;
+            text-align: justify;
+            text-justify: inter-word;
+        }
+    }
+}
+
+
+// Tablet & mobile
+@media (max-width: 63.9375em) {
+    .product-detail {
+        flex-direction: column;
+
+        .image-container {
+            flex-wrap: nowrap;
+            overflow-x: scroll;
+            scroll-snap-type: x mandatory;
+
+            img, video {
+                scroll-snap-align: start;
+                scroll-snap-stop: always;
+            }
+        }
+
+        .detail {
+            padding: 1vh 0 0;
+
+            h4 {
+                font-size: 2.3rem;
+            }
+
+            .size-selection {
+                padding: 4vh 0 3vh;
+
+                p {
+                    margin-bottom: 0.5vh;
+                }
+            }
+
+            .color-selection {
+                padding: 0;
+
+                p {
+                    margin-bottom: 0.2vh;
+                }
+            }
+
+            .add {
+                padding: 2vh 0;
+
+                &:hover {
+                    color: white;
+                    background-color: var(--primary-color);
+                    border-color: var(--primary-color);
+                    outline: none;
+                    font-weight: 400;
+                }
+            }
+        }
+    }
+}
+
+// Tablet
+@media (min-width: 46.25em) and (max-width: 63.9375em) {
+    .product-detail {
+        padding: calc(var(--navbar-height) + var(--marquee-height) + 1vh) 3vw 4vh;
+
+        .tag {
+            top: 12vh;
+            left: 4.7vw;
+            padding: 0.3vh 1vw 0;
+        }
+
+        .image-container {
+            width: 96vw;
+
+            img, video {
+                width: 46vw;
+                margin: 1vh 2vw 1vh 0;
+            }
+        }
+
+        .detail {
+            width: 94vw;
+
+            .name {
+                font-size: 4.4rem;
+                line-height: 4.2rem;
+            }
+
+            .price {
+                padding-top: 4vh;
+            }
+
+            .size-selection {
+                .wrapper {
+                    .size {
+                        width: 6vw;
+                        padding: 1vh 0 0.7vh;
+                        margin-top: 0.8vh;
+                    }
+                }
+            }
+
+            .color-selection {
+                .wrapper {
+                    .color {
+                        margin-right: 1vw;
+                    }
+                }
+            }
+
+            .add {
+                margin: 6vh 0 3vh;
+            }
+        }
+
+    }
+
+}
+
+// Mobile
+@media (max-width: 46.1875em) {
+    .product-detail {
+        padding: calc(var(--navbar-height) + var(--marquee-height) + 1vh) 4vw 8vh;
+
+        .tag {
+            top: 15vh;
+            left: 6vw;
+            font-size: 3vw;
+            line-height: 2vw;
+            padding: 0.8vh 2vw 0.5vh;
+        }
+
+        .image-container {
+            width: 92vw;
+
+            img, video {
+                width: 92vw;
+                margin: 1vh 2vw 1vh 0;
+            }
+        }
+
+        .detail {
+            width: 92vw;
+
+            .name {
+                font-size: 3.8rem;
+                line-height: 3.6rem;
+            }
+
+            .size-selection {
+                padding: 4vh 0 3vh;
+
+                p {
+                    margin-bottom: 0.5vh;
+                }
+
+                .wrapper {
+                    .size {
+                        width: 10vw;
+                        padding: 1.3vh 0 0.8vh;
+                        margin-right: 1.2vw;
+                        margin-top: 0.8vh;
+                    }
+                }
+            }
+
+            .color-selection {
+                .wrapper {
+                    .color {
+                        margin-right: 2vw;
+                    }
+                }
+            }
+
+            .add {
+                margin: 8vh 0 4vh;
+            }
+
+            .quote {
+                font-size: 2rem;
+            }
+        }
+    }
+}

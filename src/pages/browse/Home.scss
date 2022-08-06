@@ -1,0 +1,43 @@
+.home {
+    .header {
+        text-align: center;
+        padding: 12vh 0 0;
+        color: var(--text-color);
+        user-select: none;
+
+        p {
+            font-weight: 300;
+            padding: 12px 0;
+            font-size: 2rem;
+        }
+
+        h2 {
+            font-weight: 600;
+            letter-spacing: 2px;
+        }
+    }
+}
+
+
+// Tablet & mobile
+@media (max-width: 63.9375em) {
+    .home {
+        .header {
+            padding: 8vh 0 2vh;
+        }
+    }
+}
+
+// Tablet
+@media (min-width: 46.25em) and (max-width: 63.9375em) {
+    .home {
+        .header {
+            padding: 8vh 0 2vh;
+        }
+    }
+}
+
+// Mobile
+@media (max-width: 46.1875em) {
+    
+}
