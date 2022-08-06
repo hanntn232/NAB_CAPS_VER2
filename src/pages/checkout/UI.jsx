@@ -4,13 +4,15 @@ import CustomerInforForm from "./customer-infor-form";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import SuccessMessage from "./success-page";
 import { useState } from "react";
-import Footer from "./footer";
+import FooterMy from '../../common/Footer/Footer';
+import HeaderMy from '../../common/Header/Header';
 
 function CheckOutUI() {
   const [productsToCheckout, setProductsToCheckout] = useState([]);
 
   return (
     <div>
+      <HeaderMy />
       <ApolloProvider client={client}>
         {/* <BrowserRouter> */}
         <Routes>
@@ -28,9 +30,9 @@ function CheckOutUI() {
         </Routes>
         {/* </BrowserRouter> */}
       </ApolloProvider>
-
       {/* footer section  */}
-      <Footer />
+      <FooterMy />
+      
     </div>
   );
 }
