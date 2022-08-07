@@ -17,7 +17,7 @@ const Products = () => {
   const [ selectedColor, setSelectedColor ] = useState();
   const [ selectedPrice, setSelectedPrice ] = useState(0);
   const [ sortProduct, setSortProduct ] = useState();
-  const [currentPage, setCurrentPage] = useState(1);
+  const [ currentPage, setCurrentPage ] = useState(1);
 
   useEffect(() => { document.title = `Shop. Nike For You` }, []);
 
