@@ -56,7 +56,6 @@
     
             .description {
                 font-weight: 300;
-                letter-spacing: 1px;
                 white-space: nowrap;
                 overflow: hidden;
                 text-overflow: ellipsis;
@@ -85,7 +84,7 @@
         line-height: 1.6rem;
         bottom: 20px; 
         right: 12px;
-        padding: 7px 9px 5px;
+        padding: 5px 9px 3px;
         color: white;
         background-color: var(--primary-color);
         border-radius: 20px;
