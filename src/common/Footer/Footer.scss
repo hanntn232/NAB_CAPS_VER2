@@ -20,6 +20,7 @@
                     font-weight: 600;
                     cursor: pointer;
                     user-select: none;
+                    color: white;
                 }
             }
 
@@ -51,6 +52,7 @@
                 .title {
                     font-weight: 600;
                     margin-bottom: 2.2vh;
+                    color: white;
                 }
     
                 .logos {
@@ -112,12 +114,14 @@
             svg {
                 font-size: 1.4rem;
                 margin-right: 4px;
+                color: white;
             }
     
             div {
                 line-height: 1.6rem;
                 margin-top: 2px;
                 margin-right: 2vw;
+                color: white;
             }
         }
 
@@ -212,6 +216,12 @@
 
         .bottom {
             flex-direction: column;
+
+            .location {
+                div {
+                    margin: 2px 0 0;
+                }
+            }
         }
     }
 }

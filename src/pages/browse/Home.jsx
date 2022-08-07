@@ -11,7 +11,6 @@ import NewProducts from './components/Products/NewProducts/NewProducts';
 const Home = () => {
   const { data } = useQueryGetProductList();
   let products = data?.products.map((product) => product).reverse(); 
-  // products = products?.reverse();
 
   useEffect(() => { document.title = `Home. Nike For You` }, []);
 

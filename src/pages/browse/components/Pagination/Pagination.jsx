@@ -6,22 +6,21 @@ import './Pagination.scss';
 const renderProducts = (products) => {
   return (
     <ul className='product-list'>
-      { products.map((product => (
+      { products.length !== 0 ? products.map((product => (
         <li key={product.id}>
           <Product product={product} />   
         </li> 
-      )))} 
+      ))) : <h2 style={{ margin: '4vh auto'}}>There is no matching product.</h2>} 
     </ul>
   );
 };
 
-const Pagination = ({ products }) => {
-  const [currentPage, setCurrentPage] = useState(1);
+const Pagination = ({ products, currentPage, setCurrentPage }) => {
+  // const [currentPage, setCurrentPage] = useState(1);
   const [productsPerPage, setProductsPerPage] = useState(6);
   const [pageNumberLimit, setPageNumberLimit] = useState(5);
   const [maxPageNumberLimit, setMaxPageNumberLimit] = useState(5);
   const [minPageNumberLimit, setMinPageNumberLimit] = useState(0);
-
 
   const handleClick = (event) => {
     setCurrentPage(Number(event.target.id));

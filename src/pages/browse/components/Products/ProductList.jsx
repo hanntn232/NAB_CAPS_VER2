@@ -6,24 +6,24 @@ import Header from '../../../../common/Header/Header';
 import Pagination from '../Pagination/Pagination';
 import { Banner4 } from '../Banner/Banner';
 import Footer from '../../../../common/Footer/Footer';
+import { BsSliders } from "react-icons/bs";
+import { IoCloseOutline } from "react-icons/io5";
 
 
 const Products = () => {
   const { loading, error, data } = useQueryGetProductList();
-  const [ searchQuery, setSearchQuery ] = useState();
+  const [ searchQuery, setSearchQuery ] = useState(() => localStorage.getItem('searchValue'));
   const [ selectedCategory, setSelectedCategory ] = useState('');
-  const [ color, setColor ] = useState();
-  const [ price, setPrice ] = useState(0);
+  const [ selectedColor, setSelectedColor ] = useState();
+  const [ selectedPrice, setSelectedPrice ] = useState(0);
   const [ sortProduct, setSortProduct ] = useState();
+  const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => { document.title = `Shop. Nike For You` }, []);
 
-  let searchValue = localStorage.getItem('searchValue');
-  useEffect(() => setSearchQuery(searchValue), [searchValue]);
-
   const productList = data?.products.map((product) => product);
   let filteredList = productList?.reverse();
-  let featuredList = data?.products.filter(product => product.featuringFrom && product.featuringTo);
+  let featuredList = filteredList?.filter(product => product.featuringFrom && product.featuringTo);
 
   const currentDate = new Date();
   featuredList = featuredList?.filter(product => {
@@ -51,11 +51,11 @@ const Products = () => {
   }, [searchQuery, productList, filteredList]);
 
   filteredList = useMemo(() => {
-    if (color) {
-      return filteredList?.filter(product => product.colors.map(color => color.name).find(element => element === color)); 
+    if (selectedColor) {
+      return filteredList?.filter(product => product.colors.map(color => color.name).find(element => element === selectedColor)); 
     }
     return filteredList;
-  }, [color, filteredList]);
+  }, [selectedColor, filteredList]);
 
   filteredList = useMemo(() => {
     if (selectedCategory) {
@@ -65,11 +65,11 @@ const Products = () => {
   }, [selectedCategory, filteredList]);
 
   filteredList = useMemo(() => {
-    if (price !== 0) {
-      return filteredList?.filter(product => product.price >= parseInt(price, 10));
+    if (selectedPrice !== 0) {
+      return filteredList?.filter(product => product.price >= parseInt(selectedPrice, 10));
     }
     return filteredList;
-  }, [price, filteredList]);
+  }, [selectedPrice, filteredList]);
 
 
   featuredList = filteredList?.filter(product => {
@@ -106,17 +106,25 @@ const Products = () => {
     return filteredList;
   }, [sortProduct, filteredList]);
   
-
   filteredList = featuredList?.concat(filteredList);
 
   if (error) return <h1>Error: {error} </h1>;
   if (loading) return <h2 style={{ margin: '2vh auto' }}>Loading your products... 🚀</h2>;
 
   return (
-    <div className='products'>
-      <Header setSearchQuery={setSearchQuery} setSelectedCategory={setSelectedCategory} searchValue={searchQuery} link={'Shop'} />
+    <div className='shop'>
+      <Header setSearchQuery={setSearchQuery} setSelectedCategory={setSelectedCategory} searchValue={searchQuery} link={'Shop'} setCurrentPage={setCurrentPage} />
       <div className='filter-products'>
+        <label htmlFor='mobile-filter' className='mobile-filter-btn'>
+          <span>Filter</span>
+          <BsSliders />
+        </label>
+        <input type='checkbox' id='mobile-filter' hidden className='mobile-filter-checkbox-input' />
         <div className='filter'>
+          <label htmlFor='mobile-filter' className='close-btn'>
+            <div>Filter</div>
+            <IoCloseOutline />       
+          </label>
           <div className={selectedCategory === '' ? 'all active' : 'all'} onClick={() => setSelectedCategory('')}>All Shoes</div>
           <span className='gender'>Gender</span>
           <div className='selection'>
@@ -135,21 +143,21 @@ const Products = () => {
 
           <div className='color-selection-header'>
             <span>Color</span>
-            <span className='clear-color' onClick={() => setColor()}>Clear</span>
+            <span className='clear-color' onClick={() => setSelectedColor()}>Clear</span>
           </div>
           <div className='selection colors'>
-            <div className={color === 'Black' ? 'color select' : 'color'} style={{ backgroundColor: "black" }} onClick={() => setColor('Black')}></div>
-            <div className={color === 'Aquamarine' ? 'color select' : 'color'} style={{ backgroundColor: "aquamarine" }} onClick={() => setColor('Aquamarine')}></div>
-            <div className={color === 'White' ? 'color select' : 'color'} style={{ backgroundColor: "white" }} onClick={() => setColor('White')}></div>
-            <div className={color === 'University Blue' ? 'color select' : 'color'} style={{ backgroundColor: "#3c91d0" }} onClick={() => setColor('University Blue')}></div>
-            <div className={color === 'LightSalmon' ? 'color select' : 'color'} style={{ backgroundColor: "lightsalmon" }} onClick={() => setColor('LightSalmon')}></div>
-            <div className={color === 'Pink' ? 'color select' : 'color'} style={{ backgroundColor: "#cdb1a9" }} onClick={() => setColor('Pink')}></div>
-            <div className={color === 'Orange' ? 'color select' : 'color'} style={{ backgroundColor: "#e99b66" }} onClick={() => setColor('Orange')}></div>
+            <div className={selectedColor === 'Black' ? 'color select' : 'color'} style={{ backgroundColor: "black" }} onClick={() => setSelectedColor('Black')}></div>
+            <div className={selectedColor === 'Aquamarine' ? 'color select' : 'color'} style={{ backgroundColor: "aquamarine" }} onClick={() => setSelectedColor('Aquamarine')}></div>
+            <div className={selectedColor === 'White' ? 'color select' : 'color'} style={{ backgroundColor: "white" }} onClick={() => setSelectedColor('White')}></div>
+            <div className={selectedColor === 'University Blue' ? 'color select' : 'color'} style={{ backgroundColor: "#3c91d0" }} onClick={() => setSelectedColor('University Blue')}></div>
+            <div className={selectedColor === 'LightSalmon' ? 'color select' : 'color'} style={{ backgroundColor: "lightsalmon" }} onClick={() => setSelectedColor('LightSalmon')}></div>
+            <div className={selectedColor === 'Pink' ? 'color select' : 'color'} style={{ backgroundColor: "#cdb1a9" }} onClick={() => setSelectedColor('Pink')}></div>
+            <div className={selectedColor === 'Orange' ? 'color select' : 'color'} style={{ backgroundColor: "#e99b66" }} onClick={() => setSelectedColor('Orange')}></div>
           </div>
 
-          <span className='price'>Price: <span style={{ color: "darkorange" }}>${price}</span></span>
+          <span className='price'>Price: <span style={{ color: "darkorange" }}>${selectedPrice}</span></span>
           <div className='price-container'>
-            <input type="range" min='0' max='2000' className='slider' onChange={e => setPrice(e.target.value)} />
+            <input type="range" min='0' max='2000' className='slider' onChange={e => setSelectedPrice(e.target.value)} />
           </div>
 
           <div className='sort-product'>
@@ -164,8 +172,7 @@ const Products = () => {
           </div>
         </div>
         <div className='products-wrapper'>
-          {/* { filteredList.length === 0 ? <div className='end'>There is no matching product</div> : null } */}
-          <Pagination products={filteredList} />
+          <Pagination products={filteredList} currentPage={currentPage} setCurrentPage={setCurrentPage} />
         </div>
       </div>
       <Banner4 />

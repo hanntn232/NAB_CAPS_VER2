@@ -6,7 +6,7 @@ import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { useQueryGetCustomer } from '../../data/queries/getCustomer';
 
 
-const Header = ({ setSearchQuery, searchValue, setSelectedCategory, link }) => {
+const Header = ({ setSearchQuery, searchValue, setSelectedCategory, setCurrentPage, link }) => {
   const { data } = useQueryGetCustomer();
   const [ searchParams, setSearchParams ] = useSearchParams();
   const [ inputValue, setInputValue] = useState('');
@@ -14,7 +14,7 @@ const Header = ({ setSearchQuery, searchValue, setSelectedCategory, link }) => {
   const navigate = useNavigate();
 
   const handleDirect = (e) => {
-    if (e.key === 'Enter') {
+    if (e.key === 'Enter' && e.target.value !== '') {
       localStorage.setItem('searchValue', e.target.value);
       navigate({ pathname: '/shop', search: `?search=${e.target.value}`});
     }
@@ -27,6 +27,7 @@ const Header = ({ setSearchQuery, searchValue, setSelectedCategory, link }) => {
     setSearchQuery(e.target.value);
     setSearchParams({ search: e.target.value })
     setSelectedCategory('');
+    setCurrentPage(1);
   };
 
   const handleClear = () => {
@@ -37,24 +38,23 @@ const Header = ({ setSearchQuery, searchValue, setSelectedCategory, link }) => {
     setSelectedCategory('');
   };
  
- 
   return (
     <div className='app-header'>
       <nav className='navbar'>
         <div className='left-side'>
-          <Link to='/' className={navLinkSelected === 'Home' ? 'nav-link active' : 'nav-link'} onClick={() => setNavLinkSelected('Home')}>Home</Link>
-          <Link to='/shop' className={navLinkSelected === 'Shop' ? 'nav-link active' : 'nav-link'} onClick={() => setNavLinkSelected('Shop')}>Shop</Link>
-          <Link to='/owner' className={navLinkSelected === 'Owner' ? 'nav-link active' : 'nav-link'} onClick={() => setNavLinkSelected('Owner')}>Owner</Link>
+          <Link to='/' className={navLinkSelected === 'Home' ? 'nav-item-link active' : 'nav-item-link'} onClick={() => setNavLinkSelected('Home')}>Home</Link>
+          <Link to='/shop' className={navLinkSelected === 'Shop' ? 'nav-item-link active' : 'nav-item-link'} onClick={() => setNavLinkSelected('Shop')}>Shop</Link>
+          <Link to='/owner' className={navLinkSelected === 'Owner' ? 'nav-item-link active' : 'nav-item-link'} onClick={() => setNavLinkSelected('Owner')}>Owner</Link>
         </div>
-        <Link to='/' className='logo'></Link>
+        <Link to='/' className='navbar-logo'></Link>
         <div className='right-side'>
-          <label for='nav-mobile-search' className='mobile-search-btn'>
+          <label htmlFor='nav-mobile-search' className='mobile-search-btn'>
             <FiSearch />
           </label>
           <input type='checkbox' id='nav-mobile-search' hidden className='nav-search-checkbox-input' />
           <div className="searchbar">
             <FiSearch className='icon' />
-            <input type='text' placeholder='Search' className='search-input' value={inputValue} onKeyPress={handleDirect} onChange={handleChange} />
+            <input type='text' placeholder='Search' className='search-input' value={inputValue || ''} onKeyPress={handleDirect} onChange={handleChange} />
             <IoCloseOutline onClick={handleClear} className='erase-icon' />
           </div>
           <Link to='/checkout' className='cart'>
@@ -63,19 +63,19 @@ const Header = ({ setSearchQuery, searchValue, setSelectedCategory, link }) => {
           </Link>
 
           {/* Navbar for mobile */}
-          <label for='nav-mobile-input' className='nav-mobile-btn'>
+          <label htmlFor='nav-mobile-input' className='nav-mobile-btn'>
             <FiMenu />
           </label>
           <input type='checkbox' id='nav-mobile-input' className='nav-checkbox-input' />
-          <label for="nav-mobile-input" className="nav-overlay"></label>
+          <label htmlFor="nav-mobile-input" className="nav-overlay" />
           <div className='nav-mobile-wrapper'>
-            <label for='nav-mobile-input' className='close'>
+            <label htmlFor='nav-mobile-input' className='close-btn'>
               <IoCloseOutline />       
             </label>
             <div className="nav-mobile">
-              <Link to='/' className={navLinkSelected === 'Home' ? 'nav-link active' : 'nav-link'} onClick={() => setNavLinkSelected('Home')}>Home</Link>
-              <Link to='/shop' className={navLinkSelected === 'Shop' ? 'nav-link active' : 'nav-link'} onClick={() => setNavLinkSelected('Shop')}>Shop</Link>
-              <Link to='/owner' className={navLinkSelected === 'Owner' ? 'nav-link active' : 'nav-link'} onClick={() => setNavLinkSelected('Owner')}>Owner</Link>
+              <Link to='/' className={navLinkSelected === 'Home' ? 'nav-item-link active' : 'nav-item-link'} onClick={() => setNavLinkSelected('Home')}>Home</Link>
+              <Link to='/shop' className={navLinkSelected === 'Shop' ? 'nav-item-link active' : 'nav-item-link'} onClick={() => setNavLinkSelected('Shop')}>Shop</Link>
+              <Link to='/owner' className={navLinkSelected === 'Owner' ? 'nav-item-link active' : 'nav-item-link'} onClick={() => setNavLinkSelected('Owner')}>Owner</Link>
             </div>
           </div>
           

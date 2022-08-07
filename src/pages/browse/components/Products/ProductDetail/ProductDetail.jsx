@@ -28,9 +28,7 @@ const ProductDetail = () => {
   // const productsColorObj = productList.map((product) => product.colors.map((color) => color.name)); // lấy ra tên màu từ obj colors
   // const productsColorObj = data?.products.map((product) => product.colors); // lấy ra màu từ obj colors
 
-  useEffect(() => {
-    document.title = `${product?.name}`
-  }, [product?.name]);
+  useEffect(() => { document.title = `${product?.name}. ${product?.description}` }, [product?.name, product?.description]);
 
   const handleAdd = useCallback(() => {
     addItemToCartMutation ({

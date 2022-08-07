@@ -161,6 +161,7 @@
             color: white;
             font-size: 2.2rem;
             padding: 3vh 0;
+            text-align: center;
             border-radius: 50px;
             background-color: var(--primary-color);
             margin: 10vh 0;
@@ -257,9 +258,9 @@
         padding: calc(var(--navbar-height) + var(--marquee-height) + 1vh) 3vw 4vh;
 
         .tag {
-            top: 12vh;
+            top: 12.5vh;
             left: 4.7vw;
-            padding: 0.3vh 1vw 0;
+            padding: 0.3vh 1vw 0.1vh;
         }
 
         .image-container {
@@ -313,10 +314,10 @@
 // Mobile
 @media (max-width: 46.1875em) {
     .product-detail {
-        padding: calc(var(--navbar-height) + var(--marquee-height) + 1vh) 4vw 8vh;
+        padding: calc(var(--navbar-height) + var(--marquee-height) + 1.5vh) 4vw 8vh;
 
         .tag {
-            top: 15vh;
+            top: 14vh;
             left: 6vw;
             font-size: 3vw;
             line-height: 2vw;

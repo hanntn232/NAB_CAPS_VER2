@@ -11,7 +11,7 @@
 
     .label {
         position: absolute;
-        bottom: 7.5vh;
+        bottom: 7vh;
         left: 4vw;
         width: 40vw;
 
@@ -30,7 +30,7 @@
         .btn {
             display: block;
             width: fit-content;
-            padding: 1.5vh 1.6vw 1.3vh;
+            padding: 0.8vh 1.5vw 0.5vh;
             color: white;
             font-weight: 500;
             font-size: 2rem;
@@ -65,6 +65,7 @@
             line-height: 4.6rem;
             margin-top: 40px;
             user-select: none;
+            color: white;
         }
         
         .label--small {
@@ -82,6 +83,7 @@
                 border: none;
                 font-size: 1.6rem;
                 border-radius: 20px;
+                color: var(--text-color);
                 background-color: white;
                 
                 &:hover {
@@ -105,12 +107,16 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    color: white;
     margin: 4vh 0;
+
+    h2 {
+        color: white;
+    }
 
     p {
         margin: 2vh 0;
         font-weight: 300;
+        color: white;
     }
 }
 
@@ -122,12 +128,12 @@
 @media (min-width: 46.25em) and (max-width: 63.9375em) {
     .banner1 {
         .label {
-            bottom: 2vh;
+            bottom: 1.8vh;
             left: 3.5vw;
 
             h2 {
                 font-size: 4.5rem;
-                line-height: 4rem;
+                line-height: 3.8rem;
                 letter-spacing: -3px;
                 margin-bottom: -0.2vh;
             }
@@ -137,7 +143,7 @@
             }
 
             .btn {
-                padding: 0.6vh 1.5vw 0.4vh;
+                padding: 0.3vh 1.2vw 0.1vh;
                 font-size: 1.4rem;
                 margin-top: 2vh;
             }
@@ -176,26 +182,29 @@
 // Mobile
 @media (max-width: 46.1875em) {
     .banner1 {
-        padding: calc(var(--navbar-height) + var(--marquee-height) - 1px) 0 36vh;
+        padding: calc(var(--navbar-height) + var(--marquee-height) - 1px) 0 12vh;
 
         .label {
-            bottom: 6vh;
-            left: 3vw;
-            width: 96vw;
+            position: relative;
+            bottom: 0;
+            left: 0;
+            width: 100vw;
+            padding: 2vh 2vw 0 4vw;
 
             h2 {
                 font-size: 5rem;
-                line-height: 5rem;
+                line-height: 4.2rem;
                 letter-spacing: -3px;
                 margin-bottom: -0.2vh;
             }
 
             span {
                 font-size: 1.6rem;
+                margin-top: 2px;
             }
 
             .btn {
-                padding: 1.2vh 3vw 0.9vh;
+                padding: 0.8vh 3.3vw 0.5vh;
                 font-size: 2rem;
                 margin-top: 5vh;
             }
