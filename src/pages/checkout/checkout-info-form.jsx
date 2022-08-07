@@ -77,13 +77,14 @@ export default function CheckoutInfoForm({
           }}
           onSubmit={(values, { setSubmitting }) => {
             updateInfo(values);
-            emptyCart({
-              variables: {
-                customerId: customerId,
-              },
-            }).then(() => {
-              navigate("../thanhcong");
-            });
+            navigate("../thanhcong");
+            // emptyCart({
+            //   variables: {
+            //     customerId: customerId,
+            //   },
+            // }).then(() => {
+            //   navigate("../thanhcong");
+            // });
           }}
         >
           {({
