@@ -28,6 +28,7 @@ export function ListCartItems({ setProductsToCheckout }) {
   const [GetCartItems, CartItemsResult] = useLazyQuery(GET_LIST_CART_ITEMS);
   const [GetItemInfo, ItemInfoResult] = useLazyQuery(GET_PRODUCT_INFOR);
   const [HandleUpdateCart, CartAfterUpdate] = useMutation(UPDATE_CART);
+  const [modalOpen, setModalOpen] = useState(false);
   let navigate = useNavigate();
 
   const updateCartInLocal = (id, newQuantity) => {
@@ -50,13 +51,12 @@ export function ListCartItems({ setProductsToCheckout }) {
             quantity: newQuantity,
             color: product.color,
           };
-        } else if (newQuantity === 0) {
-          if (window.confirm("Remove?"))
-            return {
-              productId: id,
-              quantity: newQuantity,
-              color: product.color,
-            };
+        //   if (window.confirm("Remove?"))
+        //     return {
+        //       productId: id,
+        //       quantity: newQuantity,
+        //       color: product.color,
+        //     };
         }
       }
       return {
@@ -66,7 +66,6 @@ export function ListCartItems({ setProductsToCheckout }) {
       };
     });
 
-
     const res = HandleUpdateCart({
       variables: {
         customer: {
@@ -75,7 +74,6 @@ export function ListCartItems({ setProductsToCheckout }) {
         },
       },
     }).then(() => {
-      // CartItemsResult.refetch();
       HandleGetCartItems();
     });
   };
@@ -108,21 +106,20 @@ export function ListCartItems({ setProductsToCheckout }) {
       }
     }
 
-    // find name of cart item
+    // get items' details
     const products = CartItems.map((cartItem) => {
       const productDetail = ProductDetails.find(
         (e) => e.product?.id === cartItem.id
       );
       return { ...cartItem, ...productDetail?.product };
     });
-
+    // collect the same items into one
     let quantityItem = {};
-    products.forEach((e) => {
-      quantityItem[e.id] = quantityItem[e.id]
-        ? (quantityItem[e.id] += e.quantity)
-        : (quantityItem[e.id] = e.quantity);
+    products.forEach((product) => {
+      quantityItem[product.id] = quantityItem[product.id]
+        ? (quantityItem[product.id] += product.quantity)
+        : (quantityItem[product.id] = product.quantity);
     });
-
     let finalRes = [];
     for (let key in quantityItem) {
       const productDetail = products.find((e) => e.id === key);
@@ -134,7 +131,6 @@ export function ListCartItems({ setProductsToCheckout }) {
     });
     setProductsInCart(finalRes);
     setOriginalCartStatus(finalRes);
-
   };
 
   useEffect(() => {
@@ -143,7 +139,6 @@ export function ListCartItems({ setProductsToCheckout }) {
 
   // total
   const [subToTal, setSubTotal] = useState(0);
-
   function handleChooseItem(item) {
     let countIsChecked = 0;
     let countProducts = 0;
@@ -160,7 +155,7 @@ export function ListCartItems({ setProductsToCheckout }) {
         }
         return new_product;
       } else {
-        if (product["checked"] === true) countIsChecked++;
+        if (product["checked"]) countIsChecked++;
         return { ...product };
       }
     });
@@ -169,6 +164,17 @@ export function ListCartItems({ setProductsToCheckout }) {
     else setSelectAll(false);
 
     setProductsInCart(newProductsInCart);
+  }
+
+  const [selectAll, setSelectAll] = useState(false);
+  function handleSelectAll(value) {
+    let allProducts = productsInCart.map((product) => {
+      let new_product = { ...product };
+      new_product["checked"] = value;
+      return new_product;
+    });
+    setProductsInCart(allProducts);
+    setSelectAll(value);
   }
 
   function handleSubTotal() {
@@ -195,20 +201,6 @@ export function ListCartItems({ setProductsToCheckout }) {
       navigate("../thanhtoan");
     }
   }
-
-  const [selectAll, setSelectAll] = useState(false);
-
-  function handleSelectAll(value) {
-    let allProducts = productsInCart.map((product) => {
-      let new_product = { ...product };
-      new_product["checked"] = value;
-      return new_product;
-    });
-    setProductsInCart(allProducts);
-    setSelectAll(value);
-  }
-
-  const [modalOpen, setModalOpen] = useState(false);
 
   return (
     <div className="list-cart-items-wrapper">
