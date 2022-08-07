@@ -9,9 +9,9 @@ export default function AppRoutes() {
     <div>
       <BrowserRouter>
         <nav>
-          <Link to="/owner ">owner</Link>
-          <span>{"   |    "}</span>
-          <Link to="/bao-an">bao an</Link>
+          <Link to="/owner ">Owner</Link>
+          <span>{"   |   "}</span>
+          <Link to="/bao-an">Checkout</Link>
         </nav>
         <Routes>
           <Route path="/owner" element={<Owner />} />

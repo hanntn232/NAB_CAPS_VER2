@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import '../../../App.css'
+import '../App.css'
 import './inputForm.scss'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
@@ -86,7 +86,7 @@ export const ProductInputForm = (props) => {
             if (values.stock && values.stock.toString().trim() !== '' && ((!isNaN(values.stock) && parseInt(formik.values.stock) < 0) || isNaN(values.stock))) {
                 errors.stock = 'Must be a positive number'
             }
-            if (values.stock && !Number.isInteger(Number(values.stock))) {
+            if (values.stock && !Number.isInteger(Number(values.stock)) || values.stock.includes('.')) {
                 errors.stock = 'Must be an integer number'
             }
 
@@ -361,9 +361,6 @@ export const ProductInputForm = (props) => {
                     product.pictureUrl = values.pictureUrl
                 }
             })
-            // if (product.__typename) {
-            //     delete product['__typename']
-            // }
             const convertColorObject = (colors) => {
                 let newArrayColors = new Array();
                 colors.map((v, i) => {
@@ -451,7 +448,7 @@ export const ProductInputForm = (props) => {
             className="inputForm"
             onSubmit={formik.handleSubmit}>
 
-            <h2>Add product</h2>
+            <h3 style={{fontSize:'2.5rem', marginBottom: '10px'}}>Add product</h3>
 
             {/* Product name */}
             <label
@@ -530,7 +527,7 @@ export const ProductInputForm = (props) => {
                         value={value.name}
                         onChange={(e) => { changeColor(e.target.value, index, true, false) }}
                         onBlur={formik.handleBlur}
-                        placeholder="Enter color name"
+                        placeholder="Color name"
                         style={{ marginRight: '10px' }}
                         spellCheck={false}
                         className={formik.touched.colors && formik.errors.colorsIndex?.includes(index) && formik.errors.colorsName ? 'errMsg shortInput' : 'shortInput'} />
@@ -540,7 +537,7 @@ export const ProductInputForm = (props) => {
                         value={value.hexValue}
                         onChange={(e) => changeColor(e.target.value, index, false, true)}
                         onBlur={formik.handleBlur}
-                        placeholder="Enter color hex"
+                        placeholder="Color hex"
                         spellCheck={false}
                         className={formik.touched.colors && formik.errors.colorsIndex?.includes(index) && (formik.errors.colorsHexValue || formik.errors.colorsHexValueRegex) ? 'errMsg shortInput' : 'shortInput'} />
                     <span

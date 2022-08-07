@@ -1,0 +1,27 @@
+@media only screen and (max-width: 900px) {
+    .table.total{
+        display: flex;
+        flex-direction: column;
+        border: 1px solid #ccc;
+        align-items: flex-start;
+        width: 100%;
+    }
+    .button-order{
+        margin-top: 1rem;
+    }
+    .button-order button{
+        width: 200px;
+        border-radius: 30px;
+        background-color: black;
+        display: flex !important;
+        justify-content: center !important;
+
+    }
+    .shipping {
+        width: 100%;
+    }
+    .table {
+        border:1px solid gainsboro;
+    }
+}
+

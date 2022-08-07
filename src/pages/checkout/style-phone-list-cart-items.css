@@ -1,0 +1,113 @@
+@media only screen and (max-width: 900px) {
+    .logo{
+        display: none;
+    }
+    .cart-title{
+        font-size: 3rem;
+    }
+    .btn.btn-dark.btn-m.inverted-8.openModalBtn{
+        padding: 0.5rem 0.2rem 0.2rem;
+        width: 100%;
+        color: rgb(0, 0, 0);
+        font-size: 0.8rem;
+        border-radius: 5px;
+        text-align: center;
+    }
+    .list-cart-header-left{
+        height: 10px;
+    }
+    .cart-title{
+        font-weight: 500;
+
+    }
+    .list-cart-header-right{
+        height: 50px;
+    }
+    .btn-order-content button{
+        font-weight: 400;
+    }
+    .btn-order-content button:hover{
+        color: #fff !important;
+    }
+    .table-products{
+        font-weight: 300;
+        font-size: 1.3rem;
+    }
+    .table-products.products-image img{
+        display: none;
+    }
+    .thead-light.header th{
+        font-weight: 500;
+        font-size: 1rem;
+    }
+    .item-quantity-edit{
+        width: 1.2rem;
+        height: 1.2rem;
+        font-size: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .cart-item-btn-wrapper{
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+    }
+    .cart-total-title{
+        font-weight: 600;
+        font-size: 1.5rem;
+        position: relative;
+        left: 50%;
+    }
+    .cart-total-wrapper{
+        display: flex;
+        position: absolute;
+        left: 0%;
+        top: -30px;
+    }
+    .cart-total-text{
+        font-size: 1.5rem;
+        font-weight: 400;
+    }
+    .modalContainer.modalContainerPhone {
+        width: 400px;
+        height: 200px;
+        border-radius: 16px;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        display: flex;
+        flex-direction: column;
+        padding: 25px;
+        color: black;
+        position: absolute;
+        left: 26%;
+        top: 40%;
+        z-index: 1;
+        background-color: white;
+    }
+    .modalContainerPhone .title h2{
+        font-size: 1.3rem;
+        letter-spacing: 0px;
+    }
+    .modalContainerPhone .body div{
+        font-size: 1rem;
+        letter-spacing: 0px;
+    }
+    .modalContainer .footer .buttonPhone{
+        width: 100px;
+        height: 35px;
+        margin: 10px;
+        padding: 0rem 0.5rem;
+        border: none;
+        text-align: center;
+        color: white;
+        border-radius: 10px;
+        font-size: 1rem;
+        cursor: pointer;
+    }
+    .order-btn{
+        transform: translateY(20px);
+    }
+    .btn-order-content button{
+        font-size: 1.5rem;
+    }
+}

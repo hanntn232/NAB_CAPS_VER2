@@ -31,7 +31,7 @@ function InputField(props) {
 
   return (
     <FormGroup>
-      {label && <Label for={name}>{label}</Label>}
+      {label && <Label htmlFor={name}>{label}</Label>}
 
       <Input
         id={name}

@@ -6,7 +6,7 @@ import GetFee from "./fee";
 import "./style-customer-info.css";
 import TableProductInCart from "./table_products_in_cart";
 import { gql, useMutation } from "@apollo/client";
-
+import { useGlobalState } from '../main-page/customerIdState/customerIdState';
 
 const GET_PRODUCT_INFOR = gql`
   mutation Mutation($customerId: ID!) {
@@ -25,13 +25,13 @@ export default function CheckoutInfoForm({
   updateInfo,
 }) {
   const [emptyCart, emptyCartResult] = useMutation(GET_PRODUCT_INFOR);
-
+  const [customerId, setCustomerId] = useGlobalState('customerID');
   const navigate = useNavigate();
 
   const handleCheckout = () => {
     emptyCart({
       variables: {
-        customerId: "nvp",
+        customerId: customerId,
       },
     }).then(() => {
       navigate("../thanhcong");
@@ -47,7 +47,7 @@ export default function CheckoutInfoForm({
     <div>
       <div>
         <Formik
-          initialValues={{ name: name, email: "novapo@gmail.com" }}
+          initialValues={{ name: name, email: "default@gmail.com" }}
           validate={(values) => {
             const errors = {};
 
@@ -77,6 +77,13 @@ export default function CheckoutInfoForm({
           }}
           onSubmit={(values, { setSubmitting }) => {
             updateInfo(values);
+            emptyCart({
+              variables: {
+                customerId: customerId,
+              },
+            }).then(() => {
+              navigate("../thanhcong");
+            });
           }}
         >
           {({
@@ -176,11 +183,15 @@ export default function CheckoutInfoForm({
               <TableProductInCart productsInCart={checkoutItems} />
               <GetFee location={getLocation} subTotal={subTotal} />
 
-              <div to="/thanhcong" className="btn-order-content">
+              <div className="btn-order-content">
                 <div className="button-order">
                   <button
-                    onClick={handleCheckout}
-                    className="btn btn-dark btn-lg d-1"
+                    // onClick={handleCheckout}
+                    className={`${
+                      errors.address !== 0
+                        ? "btn btn-dark btn-lg banned"
+                        : "btn btn-dark btn-lg"
+                    }`}
                     type="submit"
                   >
                     ĐẶT HÀNG

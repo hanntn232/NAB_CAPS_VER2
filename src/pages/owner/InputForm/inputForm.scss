@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@300;500;800&display=swap');
+
 section {
 
     & {
@@ -13,7 +14,6 @@ section {
         z-index: 2;
         overflow: scroll;
         font-family: 'League Spartan', sans-serif;
-        font-size: 14px;
     }
 
     .inputForm {
@@ -22,7 +22,7 @@ section {
         padding: 20px 30px;
         margin: auto;
         background-color: white;
-        margin-top: 10vh;
+        margin-top: 120px;
         margin-bottom: 10vh;
     }
 
@@ -35,20 +35,24 @@ section {
 
     .inputForm input {
         width: 98%;
+        // height: 25px;
         margin: 5px 0 10px 0;
-        height: 1.6rem;
-        line-height: 1.5rem;
         padding: 0.3rem 5px;
         border: 1px solid var(--primary);
         border-radius: 5px;
+        font-size: 1.5rem;
         font-family: 'League Spartan', sans-serif;
     }
-    h2{
+    .inputForm textarea{
+        font-size: 1.5rem;
+    }
+
+    h2 {
         font-weight: 500;
     }
 
-    .inputForm>input:focus,
-    .inputForm>textarea:focus,
+    .inputForm input:focus,
+    .inputForm textarea:focus,
     .shortInput:focus {
         outline: none;
     }
@@ -66,6 +70,9 @@ section {
         width: 20%;
         min-width: 100px;
     }
+    #sizes.shortInput{
+        width: 30%;
+    }
 
     label.shortLabel {
         width: 20%;
@@ -77,9 +84,13 @@ section {
         font-family: 'League Spartan', sans-serif;
     }
 
-    .footer {
-        display: flex;
-        justify-content: center;
+    form {
+        .footer {
+            display: flex;
+            justify-content: center;
+            padding: 0px !important;
+            background-color: white !important;
+        }
     }
 
     .btn {
@@ -92,6 +103,7 @@ section {
         line-height: 25px;
         text-align: center;
         margin: 20px 10px;
+        font-size: 1.5rem;
     }
 
     .btn.cancel {
@@ -113,7 +125,7 @@ section {
 
     p.errMsg {
         color: red;
-        font-size: 0.8rem;
+        font-size: 1.2rem;
         margin: 0px;
     }
 
@@ -132,7 +144,6 @@ section {
     .bi.bi-dash-circle {
         border-radius: 5px;
         line-height: 1rem;
-        font-size: 1rem;
         padding: 5px;
         color: lightgray;
     }

@@ -17,7 +17,7 @@ export default function SuccessMessage(){
                     </div>
                 </div>
                 <button type="button" className="btn btn-dark btn-lg inverted-2">
-                    <Link to="/" className="btnBackToHome">
+                    <Link to="/checkout" className="btnBackToHome">
                     Về trang chủ
                     </Link>
                 </button>

@@ -8,6 +8,7 @@ import "./style-list-cart-items.css";
 import "./style-phone-list-cart-items.css";
 import logo from "../imgsrc/Logo_NIKE.svg.png";
 import Modal from "./modalCheckout";
+import { useGlobalState } from '../main-page/customerIdState/customerIdState';
 
 // import queries 
 import { GET_LIST_CART_ITEMS } from '../../data/queries/checkout-queries/get-list-cart-items';   
@@ -22,12 +23,12 @@ export const client = new ApolloClient({
 
 export function ListCartItems({ setProductsToCheckout }) {
   const [productsInCart, setProductsInCart] = useState([]);
-
   const [originalCartStatus, setOriginalCartStatus] = useState();
-
+  const [customerId, setCustomerId] = useGlobalState('customerID');
   const [GetCartItems, CartItemsResult] = useLazyQuery(GET_LIST_CART_ITEMS);
   const [GetItemInfo, ItemInfoResult] = useLazyQuery(GET_PRODUCT_INFOR);
   const [HandleUpdateCart, CartAfterUpdate] = useMutation(UPDATE_CART);
+  const [modalOpen, setModalOpen] = useState(false);
   let navigate = useNavigate();
 
   const updateCartInLocal = (id, newQuantity) => {
@@ -42,8 +43,6 @@ export function ListCartItems({ setProductsToCheckout }) {
   };
 
   const handleUpdateCartToServer = async (id, newQuantity) => {
-    console.log("update Cart", newQuantity);
-
     const newCartItems = productsInCart.map((product) => {
       if (product.id === id) {
         if (newQuantity > 0) {
@@ -52,13 +51,12 @@ export function ListCartItems({ setProductsToCheckout }) {
             quantity: newQuantity,
             color: product.color,
           };
-        } else if (newQuantity === 0) {
-          if (window.confirm("Remove?"))
-            return {
-              productId: id,
-              quantity: newQuantity,
-              color: product.color,
-            };
+        //   if (window.confirm("Remove?"))
+        //     return {
+        //       productId: id,
+        //       quantity: newQuantity,
+        //       color: product.color,
+        //     };
         }
       }
       return {
@@ -68,17 +66,14 @@ export function ListCartItems({ setProductsToCheckout }) {
       };
     });
 
-    console.log(newCartItems);
-
     const res = HandleUpdateCart({
       variables: {
         customer: {
           items: newCartItems,
-          customerId: "nvp",
+          customerId: customerId,
         },
       },
     }).then(() => {
-      // CartItemsResult.refetch();
       HandleGetCartItems();
     });
   };
@@ -86,15 +81,13 @@ export function ListCartItems({ setProductsToCheckout }) {
   const HandleGetCartItems = async () => {
     const CartItemsData = await GetCartItems({
       variables: {
-        customerId: "nvp",
+        customerId: customerId ,
       },
       fetchPolicy: "no-cache",
     });
     const CartItems = CartItemsData.data.customer.items.map((item) => {
       return { id: item.productId, quantity: item.quantity, color: item.color };
     });
-
-    console.log(CartItems);
 
     let ProductDetails = [];
     for (let item of CartItems) {
@@ -113,23 +106,20 @@ export function ListCartItems({ setProductsToCheckout }) {
       }
     }
 
-    // find name of cart item
-
-    console.log("productgsdetials", ProductDetails);
+    // get items' details
     const products = CartItems.map((cartItem) => {
       const productDetail = ProductDetails.find(
         (e) => e.product?.id === cartItem.id
       );
       return { ...cartItem, ...productDetail?.product };
     });
-
+    // collect the same items into one
     let quantityItem = {};
-    products.forEach((e) => {
-      quantityItem[e.id] = quantityItem[e.id]
-        ? (quantityItem[e.id] += e.quantity)
-        : (quantityItem[e.id] = e.quantity);
+    products.forEach((product) => {
+      quantityItem[product.id] = quantityItem[product.id]
+        ? (quantityItem[product.id] += product.quantity)
+        : (quantityItem[product.id] = product.quantity);
     });
-
     let finalRes = [];
     for (let key in quantityItem) {
       const productDetail = products.find((e) => e.id === key);
@@ -141,8 +131,6 @@ export function ListCartItems({ setProductsToCheckout }) {
     });
     setProductsInCart(finalRes);
     setOriginalCartStatus(finalRes);
-
-    console.log(finalRes);
   };
 
   useEffect(() => {
@@ -151,7 +139,6 @@ export function ListCartItems({ setProductsToCheckout }) {
 
   // total
   const [subToTal, setSubTotal] = useState(0);
-
   function handleChooseItem(item) {
     let countIsChecked = 0;
     let countProducts = 0;
@@ -168,16 +155,26 @@ export function ListCartItems({ setProductsToCheckout }) {
         }
         return new_product;
       } else {
-        if (product["checked"] === true) countIsChecked++;
+        if (product["checked"]) countIsChecked++;
         return { ...product };
       }
     });
 
-    console.log(countIsChecked, countProducts);
     if (countIsChecked === countProducts) handleSelectAll(true);
     else setSelectAll(false);
 
     setProductsInCart(newProductsInCart);
+  }
+
+  const [selectAll, setSelectAll] = useState(false);
+  function handleSelectAll(value) {
+    let allProducts = productsInCart.map((product) => {
+      let new_product = { ...product };
+      new_product["checked"] = value;
+      return new_product;
+    });
+    setProductsInCart(allProducts);
+    setSelectAll(value);
   }
 
   function handleSubTotal() {
@@ -205,61 +202,14 @@ export function ListCartItems({ setProductsToCheckout }) {
     }
   }
 
-  const [selectAll, setSelectAll] = useState(false);
-
-  function handleSelectAll(value) {
-    let allProducts = productsInCart.map((product) => {
-      let new_product = { ...product };
-      new_product["checked"] = value;
-      return new_product;
-    });
-    setProductsInCart(allProducts);
-    setSelectAll(value);
-  }
-
-  const [modalOpen, setModalOpen] = useState(false);
-
   return (
     <div className="list-cart-items-wrapper">
-      {/* navbar section  */}
-      <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a className="navbar-brand" href="#">
-          Navbar
-        </a>
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-toggle="collapse"
-          data-target="#navbarNavAltMarkup"
-          aria-controls="navbarNavAltMarkup"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span className="navbar-toggler-icon"></span>
-        </button>
-        <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
-          <div className="navbar-nav">
-            <a className="nav-item nav-link active" href="#">
-              Home <span className="sr-only">(current)</span>
-            </a>
-            <a className="nav-item nav-link" href="#">
-              Features
-            </a>
-            <a className="nav-item nav-link" href="#">
-              Pricing
-            </a>
-            <a className="nav-item nav-link disabled" href="#">
-              Disabled
-            </a>
-          </div>
-        </div>
-      </nav>
-
+      
       {/* main content section */}
       <div className="cart-wrapper">
         <div className="list-cart-header">
           <div className="list-cart-header-left">
-            <img src={logo} alt="" className="logo" />
+            <img src={logo} alt="logo" className="logo" />
             <h2 className="cart-title">GIỎ HÀNG</h2>
           </div>
           <div className="list-cart-header-right">
@@ -287,7 +237,7 @@ export function ListCartItems({ setProductsToCheckout }) {
 
         <table className="table container BA-style-table">
           <thead className="thead-light header">
-            <tr>
+            <tr className="BA-style-row-list-cart-item">
               <th scope="col" colSpan="2">
                 <input
                   type="checkbox"
@@ -302,7 +252,7 @@ export function ListCartItems({ setProductsToCheckout }) {
               <th scope="col cart-item-content" style={{ width: 400 }}>
                 Sản phẩm
               </th>
-              <th scope="col" style={{ width: 150 }}>
+              <th scope="col cart-item-category" style={{ width: 150 }}>
                 Phân loại
               </th>
               <th scope="col">Giá</th>
@@ -328,14 +278,14 @@ export function ListCartItems({ setProductsToCheckout }) {
         <div className="cart-total-block">
           <div className="cart-total-wrapper">
             <div className="cart-total-text">Tổng cộng</div>
-            <div className="cart-total-content">{subToTal} VND</div>
+            <div className="cart-total-content">{subToTal} <sup>đ</sup></div>
           </div>
           <div className="btn-order-content">
             <button
               className={`${
                 subToTal === 0
-                  ? "btn btn-dark btn-m btn-block disabled"
-                  : "btn btn-dark btn-m btn-block inverted-8"
+                  ? "btn btn-dark btn-m btn-block disabled order-btn"
+                  : "btn btn-dark btn-m btn-block inverted-8 order-btn"
               }`}
               onClick={handleCheckBeforeClick}
             >
