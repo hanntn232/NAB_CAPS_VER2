@@ -35,16 +35,16 @@ section {
 
     .inputForm input {
         width: 98%;
-        height: 25px;
+        // height: 25px;
         margin: 5px 0 10px 0;
         padding: 0.3rem 5px;
         border: 1px solid var(--primary);
         border-radius: 5px;
-        font-size: 1.3rem;
+        font-size: 1.5rem;
         font-family: 'League Spartan', sans-serif;
     }
     .inputForm textarea{
-        font-size: 1.2rem;
+        font-size: 1.5rem;
     }
 
     h2 {

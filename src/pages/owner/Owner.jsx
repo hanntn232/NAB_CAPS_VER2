@@ -5,8 +5,7 @@ import '../owner/Owner.scss'
 import { useMutationAddProduct } from "../../data/mutations/add-product";
 import { useMutationRemoveProduct } from "../../data/mutations/remove-product";
 import { useQueryGetProducts } from '../../data/queries/get-products';
-import { InputCustomerID } from "../main-page/inputCustomerID/inputCustomerID";
-import { ProductInputForm } from "./InputForm";
+import { ProductInputForm } from "./InputForm/inputForm";
 import Footer from '../../common/Footer/Footer'
 import Header from '../../common/Header/Header'
 
@@ -178,7 +177,7 @@ export const Owner = (props) => {
                 <div className="owner-container">
                     <div className="header">
                         <div className="table-name">PRODUCT LIST</div>
-                        <button className="btn" onClick={() => { setIsShow(true) }}>Add product</button>
+                        <button className="btn" onClick={() => {setIsShow(true); setIsEdit(false)}}>Add product</button>
                     </div>
                     <div className="main">
                         <div className="owner-title">

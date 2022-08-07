@@ -86,7 +86,7 @@ export const ProductInputForm = (props) => {
             if (values.stock && values.stock.toString().trim() !== '' && ((!isNaN(values.stock) && parseInt(formik.values.stock) < 0) || isNaN(values.stock))) {
                 errors.stock = 'Must be a positive number'
             }
-            if (values.stock && !Number.isInteger(Number(values.stock))) {
+            if (values.stock && !Number.isInteger(Number(values.stock)) || values.stock.includes('.')) {
                 errors.stock = 'Must be an integer number'
             }
 
@@ -361,9 +361,6 @@ export const ProductInputForm = (props) => {
                     product.pictureUrl = values.pictureUrl
                 }
             })
-            // if (product.__typename) {
-            //     delete product['__typename']
-            // }
             const convertColorObject = (colors) => {
                 let newArrayColors = new Array();
                 colors.map((v, i) => {
