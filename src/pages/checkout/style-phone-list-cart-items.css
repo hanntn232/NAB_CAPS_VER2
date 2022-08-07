@@ -54,22 +54,20 @@
         justify-content: flex-end;
     }
     .cart-total-title{
-        font-weight: 500;
-        font-size: 1.3rem;
+        font-weight: 600;
+        font-size: 1.5rem;
         position: relative;
-        left: 20%;
+        left: 50%;
     }
     .cart-total-wrapper{
         display: flex;
-        /* border: 1px solid #ccc; */
-        width: 130%;
         position: absolute;
-        left: -235px;
+        left: 0%;
         top: -30px;
     }
     .cart-total-text{
-        font-size: 1rem;
-        font-weight: 500;
+        font-size: 1.5rem;
+        font-weight: 400;
     }
     .modalContainer.modalContainerPhone {
         width: 400px;
@@ -108,5 +106,8 @@
     }
     .order-btn{
         transform: translateY(20px);
+    }
+    .btn-order-content button{
+        font-size: 1.5rem;
     }
 }
