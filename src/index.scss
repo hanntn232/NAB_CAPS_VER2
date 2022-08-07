@@ -10,28 +10,44 @@ html {
   -webkit-tap-highlight-color: transparent;
 }
 
+body {
+  font-family: 'League Spartan', sans-serif;
+  color: var(--primary-color);
+}
+
 ::-webkit-scrollbar {
   display: none;
+}
+
+label {
+  margin: 0;
 }
 
 h1 {
   font-size: 6rem;
   line-height: 6rem;
+  color: var(--text-color);
 }
 
 h2 {
-  font-size: 5.4rem;
+  font-size: 6rem;
   line-height: 6rem;
+  font-weight: 700;
+  margin: 0;
+  color: var(--text-color);
 }
 
 div {
   font-size: 1.6rem;
   line-height: 2rem;
+  color: var(--text-color);
 }
 
 p {
   font-size: 2rem;
   line-height: 2rem;
+  margin: 0;
+  color: var(--text-color);
 }
 
 button {
@@ -42,6 +58,10 @@ button {
 a {
   text-decoration: none;
   -webkit-tap-highlight-color: transparent;
+
+  &:hover {
+    text-decoration: none;
+  }
 }
 
 ul {
