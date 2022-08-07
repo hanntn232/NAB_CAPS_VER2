@@ -187,7 +187,11 @@ export default function CheckoutInfoForm({
                 <div className="button-order">
                   <button
                     // onClick={handleCheckout}
-                    class= "btn btn-dark btn-lg"
+                    className={`${
+                      errors.address !== 0
+                        ? "btn btn-dark btn-lg banned"
+                        : "btn btn-dark btn-lg"
+                    }`}
                     type="submit"
                   >
                     ĐẶT HÀNG
