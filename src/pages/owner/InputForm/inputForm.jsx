@@ -45,6 +45,7 @@ export const ProductInputForm = (props) => {
         }
     }, [store.editInfo.dataEdit])
 
+
     //Create formik
     const formik = useFormik({
         enableReinitialize: true,
@@ -86,7 +87,7 @@ export const ProductInputForm = (props) => {
             if (values.stock && values.stock.toString().trim() !== '' && ((!isNaN(values.stock) && parseInt(formik.values.stock) < 0) || isNaN(values.stock))) {
                 errors.stock = 'Must be a positive number'
             }
-            if (values.stock && !Number.isInteger(Number(values.stock)) || values.stock.includes('.')) {
+            if (values.stock && !Number.isInteger(Number(values.stock)) || values.stock.toString().includes('.')) {
                 errors.stock = 'Must be an integer number'
             }
 
