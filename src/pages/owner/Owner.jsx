@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
-import '../../App.css';
-import '../owner/index.scss'
+import './App.css';
+import '../owner/Owner.scss'
 import { useMutationAddProduct } from "../../data/mutations/add-product";
 import { useMutationRemoveProduct } from "../../data/mutations/remove-product";
 import { useQueryGetProducts } from '../../data/queries/get-products';
@@ -169,7 +169,7 @@ export const Owner = (props) => {
         }
     }, [data])
     return <div style={{ position: 'relative' }}>
-        <Header></Header>
+        <Header link={'Owner'}></Header>
         <div style={{ position: 'absolute', top: '100px' }}>
             <div id="owner-flow" className="owner-flow" style={{ width: '100vw', position: 'relative' }}>
                 <StoreContext.Provider value={store}>

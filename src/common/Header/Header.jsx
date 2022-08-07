@@ -14,7 +14,7 @@ const Header = ({ setSearchQuery, searchValue, setSelectedCategory, link }) => {
   const navigate = useNavigate();
 
   const handleDirect = (e) => {
-    if (e.key === 'Enter') {
+    if (e.key === 'Enter' && e.target.value !== '') {
       localStorage.setItem('searchValue', e.target.value);
       navigate({ pathname: '/shop', search: `?search=${e.target.value}`});
     }
@@ -42,11 +42,11 @@ const Header = ({ setSearchQuery, searchValue, setSelectedCategory, link }) => {
     <div className='app-header'>
       <nav className='navbar'>
         <div className='left-side'>
-          <Link to='/' className={navLinkSelected === 'Home' ? 'nav-link active' : 'nav-link'} onClick={() => setNavLinkSelected('Home')}>Home</Link>
-          <Link to='/shop' className={navLinkSelected === 'Shop' ? 'nav-link active' : 'nav-link'} onClick={() => setNavLinkSelected('Shop')}>Shop</Link>
-          <Link to='/owner' className={navLinkSelected === 'Owner' ? 'nav-link active' : 'nav-link'} onClick={() => setNavLinkSelected('Owner')}>Owner</Link>
+          <Link to='/' className={navLinkSelected === 'Home' ? 'nav-item-link active' : 'nav-item-link'} onClick={() => setNavLinkSelected('Home')}>Home</Link>
+          <Link to='/shop' className={navLinkSelected === 'Shop' ? 'nav-item-link active' : 'nav-item-link'} onClick={() => setNavLinkSelected('Shop')}>Shop</Link>
+          <Link to='/owner' className={navLinkSelected === 'Owner' ? 'nav-item-link active' : 'nav-item-link'} onClick={() => setNavLinkSelected('Owner')}>Owner</Link>
         </div>
-        <Link to='/' className='logo'></Link>
+        <Link to='/' className='navbar-logo'></Link>
         <div className='right-side'>
           <label for='nav-mobile-search' className='mobile-search-btn'>
             <FiSearch />
@@ -73,9 +73,9 @@ const Header = ({ setSearchQuery, searchValue, setSelectedCategory, link }) => {
               <IoCloseOutline />       
             </label>
             <div className="nav-mobile">
-              <Link to='/' className={navLinkSelected === 'Home' ? 'nav-link active' : 'nav-link'} onClick={() => setNavLinkSelected('Home')}>Home</Link>
-              <Link to='/shop' className={navLinkSelected === 'Shop' ? 'nav-link active' : 'nav-link'} onClick={() => setNavLinkSelected('Shop')}>Shop</Link>
-              <Link to='/owner' className={navLinkSelected === 'Owner' ? 'nav-link active' : 'nav-link'} onClick={() => setNavLinkSelected('Owner')}>Owner</Link>
+              <Link to='/' className={navLinkSelected === 'Home' ? 'nav-item-link active' : 'nav-item-link'} onClick={() => setNavLinkSelected('Home')}>Home</Link>
+              <Link to='/shop' className={navLinkSelected === 'Shop' ? 'nav-item-link active' : 'nav-item-link'} onClick={() => setNavLinkSelected('Shop')}>Shop</Link>
+              <Link to='/owner' className={navLinkSelected === 'Owner' ? 'nav-item-link active' : 'nav-item-link'} onClick={() => setNavLinkSelected('Owner')}>Owner</Link>
             </div>
           </div>
           
