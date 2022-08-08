@@ -3,15 +3,32 @@ import './Header.scss';
 import { IoBagHandleOutline, IoCloseOutline } from "react-icons/io5";
 import { FiSearch, FiMenu } from "react-icons/fi";
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
-import { useQueryGetCustomer } from '../../data/queries/getCustomer';
+import { GET_CUSTOMER, useQueryGetCustomer } from '../../data/queries/getCustomer';
+import { useGlobalState } from '../../pages/main-page/customerIdState/customerIdState';
+import { useQuery } from '@apollo/client';
 
 
 const Header = ({ setSearchQuery, searchValue, setSelectedCategory, setCurrentPage, link }) => {
-  const { data } = useQueryGetCustomer();
+  const [queryCustomer, {refetch}]  = useQueryGetCustomer();
   const [ searchParams, setSearchParams ] = useSearchParams();
   const [ inputValue, setInputValue] = useState('');
   const [ navLinkSelected, setNavLinkSelected] = useState(link);
+  const [customerId, setCustomerId] = useGlobalState('customerID');
   const navigate = useNavigate();
+  console.log(customerId)
+  const { data } = useQuery(GET_CUSTOMER, {
+    variables: {
+      'customerId': customerId
+    }
+  });
+
+  // useEffect(() => {
+  //   queryCustomer({
+  //     variables: {
+  //       customerId: customerId
+  //     }
+  //   })
+  // }, [customerId])
 
   const handleDirect = (e) => {
     if (e.key === 'Enter' && e.target.value !== '') {

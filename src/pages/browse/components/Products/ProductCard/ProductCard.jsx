@@ -2,21 +2,29 @@ import React, { useCallback } from 'react';
 import './ProductCard.scss';
 import { Link, useNavigate } from 'react-router-dom';
 import { useMutationAddItemToCart } from '../../../../../data/mutations/addToCart';
-import { useQueryGetCustomer } from '../../../../../data/queries/getCustomer';
+import { GET_CUSTOMER } from '../../../../../data/queries/getCustomer';
 import Tag from '../../Tag/Tag';
 import { FaGreaterThan } from 'react-icons/fa';
+import { useGlobalState } from '../../../../main-page/customerIdState/customerIdState';
+import { useQuery } from '@apollo/client';
 
 
 const Product = ({ product }) => {
   const [ addItemToCartMutation ] = useMutationAddItemToCart();
-  const customerQuery = useQueryGetCustomer();
+  const [customerId, setCustomerId] = useGlobalState('customerID');
+  const customerQuery = useQuery(GET_CUSTOMER, {
+    variables: {
+      'customerId': customerId
+    }
+  });
   const navigate = useNavigate();
 
+  
   const handleAdd = useCallback(() => {
     if (product.colors.length === 1 && product.sizes.length === 1) {
       addItemToCartMutation ({
         variables: {
-          customerId: "hmy",
+          customerId: customerId,
           item: {
             productId: product.id,
             color: product.colors[0].name,
@@ -30,7 +38,7 @@ const Product = ({ product }) => {
     } else {
       navigate(`/shop/${product.name}/${product.id}`)
     }
-  }, [addItemToCartMutation, product.name, product?.id, product?.colors, product?.sizes, navigate, customerQuery]);
+  }, [addItemToCartMutation, product.name, product?.id, product?.colors, product?.sizes, navigate, customerQuery, customerId]);
 
   return (
     <div className='product-wrapper'>

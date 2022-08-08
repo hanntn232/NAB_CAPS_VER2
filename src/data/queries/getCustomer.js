@@ -1,8 +1,9 @@
-import { gql, useQuery } from '@apollo/client'
+import { gql, useLazyQuery, useQuery } from '@apollo/client';
 
-const GET_CUSTOMER = gql `
-{
-  customer(customerId: "hmy") {
+
+export const GET_CUSTOMER = gql `
+query GetCustomerCart ($customerId: ID!) {
+  customer(customerId: $customerId) {
     id
     items {
       productId
@@ -14,4 +15,4 @@ const GET_CUSTOMER = gql `
 }
 `;
 
-export const useQueryGetCustomer = () => useQuery(GET_CUSTOMER);
+export const useQueryGetCustomer = () => useLazyQuery(GET_CUSTOMER);

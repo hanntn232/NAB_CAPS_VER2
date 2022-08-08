@@ -6,6 +6,7 @@ import FeaturedProducts from './components/Products/FeaturedProducts/FeaturedPro
 import { Banner1, Banner2 } from './components/Banner/Banner';
 import Footer from '../../common/Footer/Footer';
 import NewProducts from './components/Products/NewProducts/NewProducts';
+import { InputCustomerID } from '../main-page/inputCustomerID/inputCustomerID';
 
 
 const Home = () => {
@@ -15,22 +16,25 @@ const Home = () => {
   useEffect(() => { document.title = `Home. Nike For You` }, []);
 
   return (
-    <div className='home'>
-      <Header link={'Home'} />
-      <Banner1 />
-      <div className='header'>
-        <h2>Featured Products</h2>
-        <p>Featured Collection For This Autumn</p>
+    <>
+      <InputCustomerID isShow={true} />
+      <div className='home'>
+        <Header link={'Home'} />
+        <Banner1 />
+        <div className='header'>
+          <h2>Featured Products</h2>
+          <p>Featured Collection For This Autumn</p>
+        </div>
+        <FeaturedProducts products={products} />
+        <Banner2 />
+        <div className='header'>
+          <h2>New Arrivals</h2>
+          <p>New Collection New Modern Design</p>
+        </div>
+        <NewProducts products={products} />
+        <Footer />
       </div>
-      <FeaturedProducts products={products} />
-      <Banner2 />
-      <div className='header'>
-        <h2>New Arrivals</h2>
-        <p>New Collection New Modern Design</p>
-      </div>
-      <NewProducts products={products} />
-      <Footer />
-    </div>
+    </>
   )
 }
 

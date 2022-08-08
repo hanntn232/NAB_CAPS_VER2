@@ -3,20 +3,27 @@ import Header from '../../../../../common/Header/Header';
 import './ProductDetail.scss';
 import { useParams } from 'react-router-dom';
 import { useQueryGetProductList } from '../../../../../data/queries/getProduct';
-import { useQueryGetCustomer } from '../../../../../data/queries/getCustomer';
+import { GET_CUSTOMER } from '../../../../../data/queries/getCustomer';
 import { useMutationAddItemToCart } from '../../../../../data/mutations/addToCart';
 import Tag from '../../Tag/Tag';
 import Footer from '../../../../../common/Footer/Footer';
+import { useGlobalState } from '../../../../main-page/customerIdState/customerIdState';
+import { useQuery } from '@apollo/client';
 
 
 const ProductDetail = () => {
   const { loading, error, data } = useQueryGetProductList();
-  const customerQuery = useQueryGetCustomer();
   const [ addItemToCartMutation ] = useMutationAddItemToCart();
   const [ size, setSize ] = useState();
   const [ sizeSelected, setSizeSelected] = useState();
   const [ color, setColor ] = useState();
   const [ colorSelected, setColorSelected] = useState();
+  const [ customerId, setCustomerId ] = useGlobalState('customerID');
+  const customerQuery = useQuery(GET_CUSTOMER, {
+    variables: {
+      'customerId': customerId
+    }
+  });
   const paramValue = useParams();
   const productId = paramValue.id;
   const productName = paramValue.name;
@@ -33,20 +40,26 @@ const ProductDetail = () => {
   const handleAdd = useCallback(() => {
     addItemToCartMutation ({
       variables: {
-        customerId: "hmy",
+        customerId: customerId,
         item: {
           productId: product.id,
           color: color,
           size: size,
           quantity: 1
-        }
-      }
+        },
+      },
+      // fetchPolicy: "no-cache",
     }).then(() => {
       customerQuery.refetch();
+      // queryCustomer({
+      //   variables: {
+      //     customerId: customerId
+      //   }
+      // })
     })
-  }, [addItemToCartMutation, product?.id, color, size, customerQuery]);
+  }, [addItemToCartMutation, product?.id, color, size, customerId, customerQuery]);
 
-  console.log(colorSelected, sizeSelected)
+  // console.log(colorSelected, sizeSelected)
 
   if (error) return <h1>Error: {error} </h1>;
   if (loading) return <h2 style={{ textAlign: 'center', padding: '12vh 0', fontWeight: '500' }}>Loading your product...</h2>;
