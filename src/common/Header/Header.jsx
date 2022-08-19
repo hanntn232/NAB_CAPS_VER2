@@ -15,7 +15,6 @@ const Header = ({ setSearchQuery, searchValue, setSelectedCategory, setCurrentPa
   const [ navLinkSelected, setNavLinkSelected] = useState(link);
   const [customerId, setCustomerId] = useGlobalState('customerID');
   const navigate = useNavigate();
-  console.log(customerId)
   const { data } = useQuery(GET_CUSTOMER, {
     variables: {
       'customerId': customerId

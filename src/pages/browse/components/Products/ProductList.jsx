@@ -19,6 +19,7 @@ const Products = () => {
   const [ sortProduct, setSortProduct ] = useState();
   const [ currentPage, setCurrentPage ] = useState(1);
 
+  // Update the document title using the browser API
   useEffect(() => { document.title = `Shop. Nike For You` }, []);
 
   const productList = data?.products.map((product) => product);
@@ -35,7 +36,7 @@ const Products = () => {
     
     if (featuringFromDate <= currentDate && featuringToDate >= currentDate) {
       return product;
-    }
+    }  
     return null;
   })
 
